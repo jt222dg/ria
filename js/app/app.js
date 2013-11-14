@@ -1,11 +1,13 @@
-define(['backbone', 'jquery', 'underscore', 'app/view/testview'],
-function(Backbone, $, _, TestView) {
+define(['backbone', 'jquery', 'underscore', 'app/view/testview', 'app/model/TestModel'],
+function(Backbone, $, _, TestView, TestModel) {
     return {
         run : function() {
+            var testModel = new TestModel();
             var testView = new TestView();
-            for (var i = 0; i < 10; ++i) {
-                $("#content").append(testView.render());
-            }
+            
+            $("#content").append(testView.showData(testModel.getData()));
+            testModel.setData(25);
+            $("#content").append(testView.showData(testModel.getData()));
             
             console.log("SYSTEM: Main application running...");
         }
