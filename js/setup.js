@@ -1,36 +1,38 @@
 console.log("SYSTEM: Conifguring RequireJS..");
 
 requirejs.config({
-    
-    baseUrl: 'js/lib',
-    
-    paths: {
-        // Base folder paths
-        app: '../app',
-        
-        // Lib paths
-        jquery:     'jquery/jquery',
-        require:    'require/require',
-        'bb-raw':   'backbone/backbone-raw',
-        backbone:   'backbone/backbone-module',
-        underscore: 'underscore/underscore'
-        
-        // App paths
+
+  baseUrl: 'js/lib',
+
+  paths: {
+    // Base folder paths
+    app: '../app',
+  
+    // Lib paths
+    jquery      : 'jquery/jquery',
+    require     : 'require/require',
+    'bb-raw'    : 'backbone/backbone',
+    backbone    : 'backbone/backbone-module',
+    underscore  : 'underscore/underscore',
+    "bootstrap" : 'bootstrap/bootstrap.min'
+  },
+  
+  shim: {
+    'bb-raw' : {
+      deps    : ['underscore', 'jquery'],
+      exports : 'Backbone'
     },
-    
-    shim: {
-        'bb-raw': {
-            deps: ['underscore', 'jquery'], // Backbone.js dependencies:
-            exports: 'Backbone'             // Use 'Backbone' as the module value.
-        },
-        'underscore': {
-            exports: '_'                    // Use '_' as underscore value.
-        }
+    'underscore' : {
+      exports : '_'
+    },
+    'bootstrap' : {
+      deps    : ['jquery']
     }
+  }
 });
 
 console.log("SYSTEM: Main module loading...");
 
 require(["app/app"], function(app) {
-    app.run();
+  app.run();
 });
