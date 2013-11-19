@@ -38,6 +38,6 @@ requirejs.config({
 
 console.log("SYSTEM: Main module loading...");
 
-require(["domReady!","app/app"], function(document, app) {
+require(["app/app"], function(app) {
   app.run();
 });
