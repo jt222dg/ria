@@ -15,7 +15,6 @@ requirejs.config({
     jquery      : 'jquery/jquery',
     require     : 'require/require',
     text        : 'require/text',
-    domReady    : 'require/domReady',
     'bb-raw'    : 'backbone/backbone',
     backbone    : 'backbone/backbone-module',
     underscore  : 'underscore/underscore',
