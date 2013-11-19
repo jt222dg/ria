@@ -29,6 +29,9 @@ requirejs.config({
     },
     'underscore' : {
       exports : '_'
+    },
+    'jas-html' : {
+      deps    : ['jasmine']
     }
   }
 });
