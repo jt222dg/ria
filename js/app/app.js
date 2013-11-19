@@ -1,12 +1,12 @@
 console.log("SYSTEM: App module loading...");
 
-define(['backbone', 'jquery', 'underscore', 'app/view/testview', 'app/model/TestModel', 'bootstrap'],
-function(Backbone, $, _, TestView, TestModel) {
+define(['backbone', 'jquery', 'underscore', 'view/nav', 'view/footer', 'view/content'],
+function(Backbone, $, _, NavView, FooterView, ContentView) {
   return {
     run : function() {
-      var testModel = new TestModel();
-      var testModel2 = new TestModel();
-      var testView = new TestView();
+      var navView        = new NavView();
+      var footerView     = new FooterView();
+      var contentView    = new ContentView();
       
       var button = $("#button");
       var change = true;
@@ -20,7 +20,7 @@ function(Backbone, $, _, TestView, TestModel) {
         $(link).click(function() {
           $(".active").removeClass("active");
           $(link).addClass("active");
-        })
+        });
       });
       
       console.log("SYSTEM: Main application running...");

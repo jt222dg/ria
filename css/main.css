@@ -79,10 +79,14 @@ body {
 }
 
 #overflow {
-  overflow-y:scroll;
+  overflow-y:auto;
   max-height:750px;
 }
 
 #button2 {
   display:none;
+}
+
+#footer-element {
+  background-color:#FFF;
 }

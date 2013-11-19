@@ -6,11 +6,16 @@ requirejs.config({
 
   paths: {
     // Base folder paths
-    app: '../app',
+    app         : '../app',
+    view        : '../app/view',
+    model       : '../app/model',
+    template    : '../../template',
   
     // Lib paths
     jquery      : 'jquery/jquery',
     require     : 'require/require',
+    text        : 'require/text',
+    domReady    : 'require/domReady',
     'bb-raw'    : 'backbone/backbone',
     backbone    : 'backbone/backbone-module',
     underscore  : 'underscore/underscore',
@@ -33,6 +38,6 @@ requirejs.config({
 
 console.log("SYSTEM: Main module loading...");
 
-require(["app/app"], function(app) {
+require(["domReady!","app/app"], function(document, app) {
   app.run();
 });
