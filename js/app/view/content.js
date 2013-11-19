@@ -19,9 +19,8 @@ define(['backbone', 'underscore', 'text!template/content.html', 'view/subcontent
       var variables = { searchLabel : "Search:" };
       var template = _.template(contentTemplate, variables);
       this.$el.html(template);
-      
-      var subContent = new SubContent({ el : "#subcontent-element" });
-      subContent.render();
+
+      (new SubContent()).render();
     }
   });
 });
