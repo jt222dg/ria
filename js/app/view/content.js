@@ -1,17 +1,21 @@
-console.log("SYSTEM: Nav view loading...");
+console.log("SYSTEM: Content view loading...");
 
-define(['backbone', 'underscore', 'text!template/content.html', 'view/subcontent'], function(Backbone, _, contentTemplate, SubContent) {
-  var contentElement = "#content-element";
+define(function(require) {
+  
+  // Required modules
+  var Backbone        = require('backbone');
+  var _               = require('underscore');
+  var $               = require('jquery');
+  var contentTemplate = require('text!template/content.html');
   
   return Backbone.View.extend({
     
-    el : contentElement,
+    el : "#content-element",
     
     defaults : {
     },
     
     initialize : function() {
-      this.render();
     },
     
     render : function() {
@@ -19,8 +23,7 @@ define(['backbone', 'underscore', 'text!template/content.html', 'view/subcontent
       var variables = { searchLabel : "Search:" };
       var template = _.template(contentTemplate, variables);
       this.$el.html(template);
-
-      (new SubContent()).render();
     }
+    
   });
 });

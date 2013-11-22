@@ -58,7 +58,9 @@ body {
 .marketing p + h4 {
   margin-top: 28px;
 }
-
+.center {
+  margin:0 auto;
+}
 /* Responsive: Portrait tablets and up */
 @media screen and (min-width: 768px) {
   /* Remove the padding we set earlier */
@@ -78,6 +80,11 @@ body {
   }
 }
 
+a, a:focus, a:active, li, li:focus, li:active {
+   outline-color: transparent !important;
+   outline:0;
+}
+
 #overflow {
   overflow-y:auto;
   max-height:750px;
@@ -89,4 +96,10 @@ body {
 
 #footer-element {
   background-color:#FFF;
+}
+
+#canvas {
+  background-color:#000;
+  width:100%;
+  height:100%;
 }

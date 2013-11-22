@@ -1,6 +1,8 @@
-console.log("SYSTEM: Technique module loading...");
+console.log("SYSTEM: Score module loading...");
 
-define(['backbone'], function(Backbone) {
+define(function(require) {
+  var Backbone = require('backbone');
+  
   return Backbone.Model.extend({
     defaults : {
       name        : 'new technique',

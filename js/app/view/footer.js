@@ -1,17 +1,20 @@
-console.log("SYSTEM: Nav view loading...");
+console.log("SYSTEM: Footer view loading...");
 
-define(['backbone', 'underscore', 'text!template/footer.html'], function(Backbone, _, footerTemplate) {
-  var navigationElement = "#footer-element";
+define(function(require) {
+  
+  // Required modules
+  var Backbone        = require('backbone');
+  var _               = require('underscore');
+  var footerTemplate  = require('text!template/footer.html');
   
   return Backbone.View.extend({
     
-    el : $(navigationElement),
+    el : "#footer-element",
     
     defaults : {
     },
     
     initialize : function() {
-      this.render();
     },
     
     render : function() {

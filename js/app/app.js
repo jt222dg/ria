@@ -1,29 +1,28 @@
 console.log("SYSTEM: App module loading...");
 
-define(['backbone', 'jquery', 'underscore', 'view/nav', 'view/footer', 'view/content'],
-function(Backbone, $, _, NavView, FooterView, ContentView) {
+define(function(require) {
+  
+  // Required modules
+  var Backbone = require('backbone');
+  var $        = require('jquery');
+  var _        = require('underscore');
+  var Router   = require('app/router');
+  
   return {
     run : function() {
-      var navView        = new NavView();
-      var footerView     = new FooterView();
-      var contentView    = new ContentView();
+    
+      (new Router());
+      Backbone.history.start();
+
+      /*
+      var boxes = new Boxes([
+          new Box({ x :  1.0, y :  1.0 }),
+          new Box({ x : 20.0, y : 20.0 }),
+          new Box({ x : 40.0, y : 40.0 })
+      ]);
       
-      var button = $("#button");
-      var change = true;
-      button.click(function() {
-        button.empty();
-        button.append((change ? "Another " : "A ") + "button");
-        change = !change;
-      });
-      
-      _.each($("#menu").children(), function(link) {
-        $(link).click(function() {
-          $(".active").removeClass("active");
-          $(link).addClass("active");
-        });
-      });
-      
-      console.log("SYSTEM: Main application running...");
+      var boxView = new BoxView({ model : boxes});
+      */
     }
   };
 });

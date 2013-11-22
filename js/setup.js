@@ -1,6 +1,6 @@
 console.log("SYSTEM: Conifguring RequireJS..");
 
-requirejs.config({
+require.config({
 
   baseUrl: 'js/lib',
 
@@ -9,8 +9,11 @@ requirejs.config({
     app         : '../app',
     view        : '../app/view',
     model       : '../app/model',
+    controller  : '../app/controller',
     template    : '../../template',
-  
+    game        : '../game',
+    utility     : '../utility',
+    
     // Lib paths
     jquery      : 'jquery/jquery',
     require     : 'require/require',
