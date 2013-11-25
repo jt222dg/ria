@@ -23,8 +23,6 @@ define(function(require) {
         return;
       }
       
-      console.log("SYSTEM: closing view...");
-      
       this.removeActive(type);
       activeViews[type] = view;
     },

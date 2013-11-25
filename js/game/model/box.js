@@ -1,17 +1,22 @@
 define(function(require) {
   
   // Required modules
-  var Backbone = require('backbone');
+  var Class = require('utility/class');
   
-  return Backbone.Model.extend({
-    defaults : {
-      x : 0.0,
-      y : 0.0,
-      w : 10.0,
-      h : 10.0
+  return Class.extend({
+    init : function(x, y) {
+      this.x = x;
+      this.y = y;
+      this.w = 10.0;
+      this.h = 10.0;
     },
     
-    initialize : function() {
-    }
+    setX : function(x) { this.x = x; },
+    setY : function(y) { this.y = y; },
+    
+    getX : function() { return this.x; },
+    getY : function() { return this.y; },
+    getW : function() { return this.w; },
+    getH : function() { return this.h; }
   });
 });

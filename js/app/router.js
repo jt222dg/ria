@@ -3,8 +3,20 @@ console.log("SYSTEM: Router module loading...");
 define(function(require) {
   
   // Required modules
-  var Backbone = require('backbone');
-  var MainView = require('view/main');
+  var Backbone    = require('backbone');
+  var ViewHandler = require('app/view-handler');
+  var GameHandler = require('game/game-handler');
+  
+  // Private variables
+  var urlStack = [];
+  
+  function cleanLastVisited() {
+    if (urlStack.pop() === 'game') {
+      GameHandler.stopGame();
+    }
+      
+    urlStack.push(Backbone.history.fragment);
+  }
   
   return Backbone.Router.extend({
     routes : {
@@ -16,27 +28,33 @@ define(function(require) {
     },
     
     defaults : {
-      mainView : undefined
+      viewHandler : undefined
     },
     
     initialize : function() {
-      this.mainView = new MainView();
+      this.viewHandler = new ViewHandler();
+      urlStack.push(Backbone.history.fragment);
     },
     
     index : function() {
-      this.mainView.renderMainPage();
+      cleanLastVisited();
+      this.viewHandler.renderMainPage();
     },
     
     game : function() {
-      this.mainView.renderGamePage();
+      cleanLastVisited();
+      this.viewHandler.renderGamePage();
+      GameHandler.startGame();
     },
     
     about : function() {
-      this.mainView.renderAboutPage();
+      cleanLastVisited();
+      this.viewHandler.renderAboutPage();
     },
     
     def : function(def) {
-      console.log("in def");
+      cleanLastVisited();
+      console.log("in default route");
     }
   });
 });

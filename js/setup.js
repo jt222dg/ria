@@ -21,7 +21,10 @@ require.config({
     'bb-raw'    : 'backbone/backbone',
     backbone    : 'backbone/backbone-module',
     underscore  : 'underscore/underscore',
-    "bootstrap" : 'bootstrap/bootstrap.min'
+    bootstrap   : 'bootstrap/bootstrap.min',
+    
+    // Other
+    base        : '../utility/base'
   },
   
   shim: {
@@ -34,6 +37,9 @@ require.config({
     },
     'bootstrap' : {
       deps    : ['jquery']
+    },
+    'base' : {
+      deps    : ['Backbone']
     }
   }
 });

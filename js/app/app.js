@@ -8,7 +8,8 @@ define(function(require) {
   var _        = require('underscore');
   var Router   = require('app/router');
   
-  return {
+  var app = {};
+  $(app ={
     run : function() {
     
       (new Router());
@@ -24,5 +25,7 @@ define(function(require) {
       var boxView = new BoxView({ model : boxes});
       */
     }
-  };
+  });
+  
+  return app;
 });
