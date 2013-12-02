@@ -2,14 +2,13 @@ define(function(require) {
   
   // Required modules
   var $ = require('jquery');
-                 
-  var CanvasHandler = function() {
-    this.canvas = undefined;
-    this.ctx    = undefined;
+  var Rect = require('utility/rect');
+  
+  var CollisionHandler = function() {
     this.onInit();
   };
   
-  CanvasHandler.prototype.onInit = function() {
+  CollisionHandler.prototype.onInit = function() {
     this.canvas = $('#canvas').get(0);
     if (this.canvas !== undefined) {
       
@@ -21,17 +20,18 @@ define(function(require) {
     }
   };
   
-  CanvasHandler.prototype.clearScreen = function() {
-    if (this.ctx !== undefined) {
-      this.ctx.save();
-      
-      // Use identity matrix while clearing the screen
-      this.ctx.setTransform(1,0,0,1,0,0);
-      this.ctx.clearRect(0, 0, this.canvas.width, this.canvas.height);
-      
-      this.ctx.restore();
+  CollisionHandler.prototype.onCollision = function(rectA, rectB) {
+    if (!(rectA instanceof Rect) || !(rectB instanceof Rect)) {
+      return false;
     }
+      
+    return (
+      rectA.right > rectB.left  &&
+      rectA.left  < rectB.right &&
+      rectA.upper > rectB.lower &&
+      rectA.lower < rectB.upper
+    );
   };
   
-  return CanvasHandler;
+  return CollisionHandler;
 });

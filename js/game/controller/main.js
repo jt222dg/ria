@@ -51,11 +51,11 @@ define(function(require) {
   }
   
   return {
-    run : function() {
+    startGame : function() {
       runLoop();
     },
     
-    stop: function() {
+    stopGame : function() {
       stopLoop();
     }
   };

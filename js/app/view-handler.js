@@ -12,17 +12,24 @@ define(function(require) {
   var GameView    = require('view/game');
   var AboutView   = require('view/about');
   
-  function resetDefaults() {
-    if (!(ViewFactory.getActiveContent() instanceof ContentView)) {
-      ViewFactory.changeContent(new ContentView());
+  var ViewType = {
+    CONTENT    : 0,
+    SUBCONTENT : 1,
+    NAV        : 2,
+    FOOTER     : 3
+  };
+  
+  function renderMain() {
+    if (!(ViewFactory.getActiveView(ViewType.CONTENT) instanceof ContentView)) {
+      ViewFactory.changeView(ViewType.CONTENT, new ContentView());
     }
     
-    if (!(ViewFactory.getActiveNav() instanceof NavView)) {
-      ViewFactory.changeNav(new NavView());
+    if (!(ViewFactory.getActiveView(ViewType.NAV) instanceof NavView)) {
+      ViewFactory.changeView(ViewType.NAV, new NavView());
     }
     
-    if (!(ViewFactory.getActiveFooter() instanceof FooterView)) {
-      ViewFactory.changeFooter(new FooterView());
+    if (!(ViewFactory.getActiveView(ViewType.FOOTER) instanceof FooterView)) {
+      ViewFactory.changeView(ViewType.FOOTER, new FooterView());
     }
   }
   
@@ -34,18 +41,18 @@ define(function(require) {
     },
     
     renderGamePage : function() {
-      resetDefaults();
-      ViewFactory.changeSubContent(new GameView());
+      renderMain();
+      ViewFactory.changeView(ViewType.SUBCONTENT, new GameView());
     },
     
     renderMainPage : function() {
-      resetDefaults();
-      ViewFactory.changeSubContent(new InfoView());
+      renderMain();
+      ViewFactory.changeView(ViewType.SUBCONTENT, new InfoView());
     },
     
     renderAboutPage : function() {
-      resetDefaults();
-      ViewFactory.changeSubContent(new AboutView());
+      renderMain();
+      ViewFactory.changeView(ViewType.SUBCONTENT, new AboutView());
     }
     
   });

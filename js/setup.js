@@ -6,25 +6,28 @@ require.config({
 
   paths: {
     // Base folder paths
-    app         : '../app',
-    view        : '../app/view',
-    model       : '../app/model',
-    controller  : '../app/controller',
-    template    : '../../template',
-    game        : '../game',
-    utility     : '../utility',
+    app        : '../app',
+    view       : '../app/view',
+    model      : '../app/model',
+    controller : '../app/controller',
+    template   : '../../template',
+    game       : '../game',
+    component  : '../game/component',
+    entity     : '../game/entity',
+    system     : '../game/system',
+    utility    : '../utility',
     
     // Lib paths
-    jquery      : 'jquery/jquery',
-    require     : 'require/require',
-    text        : 'require/text',
-    'bb-raw'    : 'backbone/backbone',
-    backbone    : 'backbone/backbone-module',
-    underscore  : 'underscore/underscore',
-    bootstrap   : 'bootstrap/bootstrap.min',
+    jquery     : 'jquery/jquery',
+    require    : 'require/require',
+    text       : 'require/text',
+    'bb-raw'   : 'backbone/backbone',
+    backbone   : 'backbone/backbone-module',
+    underscore : 'underscore/underscore',
+    bootstrap  : 'bootstrap/bootstrap.min',
     
     // Other
-    base        : '../utility/base'
+    base       : '../utility/base'
   },
   
   shim: {

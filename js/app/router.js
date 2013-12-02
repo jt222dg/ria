@@ -5,17 +5,24 @@ define(function(require) {
   // Required modules
   var Backbone    = require('backbone');
   var ViewHandler = require('app/view-handler');
-  var GameHandler = require('game/game-handler');
+  var GameHandler = require('game/controller/main');
   
+  // Page type enum
+  var PageType = {
+    MAIN  : 0,
+    GAME  : 1,
+    ABOUT : 2
+  };
+
   // Private variables
-  var urlStack = [];
+  var lastPage = PageType.MAIN;
   
-  function cleanLastVisited() {
-    if (urlStack.pop() === 'game') {
+  function cleanLastVisited(type) {
+    if (type === PageType.GAME) {
       GameHandler.stopGame();
     }
       
-    urlStack.push(Backbone.history.fragment);
+    lastPage = type;
   }
   
   return Backbone.Router.extend({
@@ -33,27 +40,26 @@ define(function(require) {
     
     initialize : function() {
       this.viewHandler = new ViewHandler();
-      urlStack.push(Backbone.history.fragment);
     },
     
     index : function() {
-      cleanLastVisited();
+      cleanLastVisited(PageType.MAIN);
       this.viewHandler.renderMainPage();
     },
     
     game : function() {
-      cleanLastVisited();
+      cleanLastVisited(PageType.GAME);
       this.viewHandler.renderGamePage();
       GameHandler.startGame();
     },
     
     about : function() {
-      cleanLastVisited();
+      cleanLastVisited(PageType.ABOUT);
       this.viewHandler.renderAboutPage();
     },
     
     def : function(def) {
-      cleanLastVisited();
+      cleanLastVisited(PageType.MAIN);
       console.log("in default route");
     }
   });

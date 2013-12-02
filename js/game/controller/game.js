@@ -1,29 +1,29 @@
 define(function(require) {
   
   // Required modules
-  var Backbone      = require('backbone');
-                      require('utility/base');
+  var Camera   = require('game/camera');
   
-  return Backbone.Base.extend({
-    defaults : {
-    },
-    
-    initialize : function() {
-    },
-    
-    onInit : function() {
-    },
-    
-    onEvent : function() {
-    },
-    
-    onLogic : function(delta) {
-    },
-    
-    onRender : function(delta) {
-    },
-    
-    onCleanUp : function() {
-    }
-  });
+  var Game = function() {
+    this._camera = new Camera();
+    //addEventListener
+    //removeEventListener
+  };
+  
+  Game.prototype.onEvent = function() {
+    // Empty stub
+  };
+  
+  Game.prototype.onLogic = function(delta) {
+    // Empty stub
+  };
+  
+  Game.prototype.onRender = function(delta) {
+    // Empty stub
+  };
+  
+  Game.prototype.onCleanUp = function() {
+    // Empty stub
+  };
+  
+  return Game;
 });
