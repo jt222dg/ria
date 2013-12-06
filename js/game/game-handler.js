@@ -3,29 +3,27 @@ define(function(require) {
   // Required modules
   var Raf           = require('utility/raf');
   var CanvasHandler = require('game/canvas-handler');
+  var EventHandler  = require('game/event-handler');
+  var StageOne      = require('game/controller/stageOne');
   
-  // Internal varaibles
   var requestId = 0;
   var running   = true;
-  
-  var Game     = require('game/controller/game');
-  var StageOne = require('game/controller/game-stage01');
-  
-  function onInit() {
     
-  }
-  
-  function onCleanup() {
+  var GameHandler = function() {
     
-  }
+  };
   
-  function runLoop() {
+  GameHandler.prototype.startGame = function() {
+    
     var startTime = Date.now();
-    var endTime  = startTime;
-    var delta    = 0;
+    var endTime   = startTime;
+    var delta     = 0.0;
     
     var canvasHandler = new CanvasHandler();
-    var game = new StageOne();
+    var eventHandler  = new EventHandler();
+    var game          = new StageOne();
+    var score         = 0;
+    
     running = true;
     
     (function loop(){
@@ -38,25 +36,24 @@ define(function(require) {
       delta     = delta < 0.016 ? delta : 0.016;
       endTime   = startTime;
       
-      game.onLogic(delta);
+      if (!eventHandler.getKeys().P) {
+        game.onLogic(delta);
+      }
+      
+      if (eventHandler.getKeys().N) {
+        game.restart();
+        eventHandler.getKeys().N = !eventHandler.getKeys().N;
+      }
       
       canvasHandler.clearScreen();
       game.onRender(delta);
     })();
-  }
+  };
   
-  function stopLoop() {
+  GameHandler.prototype.stopGame = function() {
     Raf.clearRequestInterval.call(window, requestId);
     running = false;
-  }
-  
-  return {
-    startGame : function() {
-      runLoop();
-    },
-    
-    stopGame : function() {
-      stopLoop();
-    }
   };
+  
+  return GameHandler;
 });

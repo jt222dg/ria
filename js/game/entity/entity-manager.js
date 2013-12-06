@@ -11,7 +11,7 @@ define(function(require) {
   var EntityManager = function(world) {
     //this.initWorld();
     this._world = new World();
-    this._ENTITY_COUNT = 10000;
+    this._ENTITY_COUNT = 1000;
   };
   
   EntityManager.prototype.initWorld = function() {
@@ -39,19 +39,29 @@ define(function(require) {
     this._world.mask[entity] = Type.COMPONENT_NONE;
   };
   
-  EntityManager.prototype.createTree = function(x, y) {
+  EntityManager.prototype.createPlayer = function(x, y, vx, vy, mass, w, h) {
     var entity = this.createEntity();
     
+    this._world.mask[entity] = (
+      Type.COMPONENT_DISPLACEMENT |
+      Type.COMPONENT_APPEARANCE   |
+      Type.COMPONENT_VELOCITY     |
+      Type.COMPONENT_PHYSICS
+    );
+    
     if (entity != this._ENTITY_COUNT) {
-      this._world.mask[entity] = Type.COMPONENT_DISPLACEMENT | Type.COMPONENT_APPEARANCE;
-      
       this._world.displacement[entity].x = x;
       this._world.displacement[entity].y = y;
       
-      this._world.appearance[entity].name = "Tree";
+      this._world.velocity[entity].x = vx;
+      this._world.velocity[entity].y = vy;
+      
+      this._world.physics[entity].mass = mass;
+      this._world.physics[entity].w = w;
+      this._world.physics[entity].h = h;
+      
+      this._world.appearance[entity].name = "Player";
     }
-    
-    return entity;
   };
   
   EntityManager.prototype.createBox = function(x, y, vx, vy, mass, w, h) {
@@ -76,21 +86,6 @@ define(function(require) {
       this._world.physics[entity].h = h;
       
       this._world.appearance[entity].name = "Box";
-    }
-    
-    return entity;
-  };
-  
-  EntityManager.prototype.createGhost = function(x, y, vx, vy) {
-    var entity = this.createEntity();
-    if (entity != this._ENTITY_COUNT) {
-      this._world.mask[entity] = Type.COMPONENT_DISPLACEMENT | Type.COMPONENT_VELOCITY;
-      
-      this._world.displacement[entity].x = x;
-      this._world._world.displacement[entity].y = y;
-      
-      this._world.velocity[entity].x = vx;
-      this._world.velocity[entity].y = vy;
     }
     
     return entity;

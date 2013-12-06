@@ -8,10 +8,6 @@ define(function(require) {
   var $           = require('jquery');
   var navTemplate = require('text!template/nav.html');
   
-  function removeOldActiveButton() {
-    $('.active').removeClass('active');
-  }
-  
   return Backbone.View.extend({
     
     el : "#navigation-element",
@@ -21,38 +17,45 @@ define(function(require) {
     
     initialize : function() {
     },
-      
+
     render : function() {
       var template = _.template(navTemplate, {});
       this.$el.html(template);
       
       switch (Backbone.history.fragment) {
-        case "index" : this.activateHomeButton();  break;
-        case "game"  : this.activateGameButton();  break;
-        case "about" : this.activateAboutButton(); break;
-        default      : this.activateHomeButton();  break;
+        case "index"  : this.activateHomeButton();   break;
+        case "game"   : this.activateGameButton();   break;
+        case "about"  : this.activateAboutButton();  break;
+        case "scores" : this.activateScoresButton(); break;
+        default       : this.activateHomeButton();   break;
       }
     },
     
     events : {
-      "click #home"  : "activateHomeButton",
-      "click #game"  : "activateGameButton",
-      "click #about" : "activateAboutButton"
+      "click #home"   : "activateHomeButton",
+      "click #game"   : "activateGameButton",
+      "click #about"  : "activateAboutButton",
+      "click #scores" : "activateScoresButton"
     },
     
     activateHomeButton : function(event) {
-      removeOldActiveButton();
+      $('.active').removeClass('active');
       $('#home').parent().addClass('active');
     },
     
     activateGameButton : function(event) {
-      removeOldActiveButton();
+      $('.active').removeClass('active');
       $('#game').parent().addClass('active');
     },
     
     activateAboutButton : function(event) {
-      removeOldActiveButton();
+      $('.active').removeClass('active');
       $('#about').parent().addClass('active');
+    },
+    
+    activateScoresButton : function(event) {
+      $('.active').removeClass('active');
+      $('#scores').parent().addClass('active');
     }
   });
 });

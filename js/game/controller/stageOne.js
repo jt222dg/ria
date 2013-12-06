@@ -1,7 +1,6 @@
 define(function(require) {
   
   // Required modules
-  var Game          = require('game/controller/game');
   var _             = require('underscore');
   var EntityManager = require('entity/entity-manager');
   var SystemManager = require('system/system-manager');
@@ -15,8 +14,6 @@ define(function(require) {
     this._entityManager.createBox(750.0, (Math.random()*340)+1, -60.0, 0.0, 1.0, 10.0, 10.0);
   };
   
-  _.extend(StageOne.prototype, Game.prototype);
-  
   StageOne.prototype.onEvent = function() {
     // Empty stub
   };
@@ -24,7 +21,7 @@ define(function(require) {
   StageOne.prototype.onLogic = function(delta) {
     this._addTimer += delta;
       
-    if (this._addTimer >= 0.0005) {
+    if (this._addTimer >= 0.05) {
       this._entityManager.createBox(750.0, (Math.random()*340)+1, -60.0, 0.0, 1.0, 10.0, 10.0);
       this._addTimer = 0.0;
     }
@@ -38,6 +35,10 @@ define(function(require) {
   
   StageOne.prototype.onCleanUp = function() {
     // Empty stub
+  };
+  
+  StageOne.prototype.restart = function() {
+    this._entityManager.initWorld();
   };
   
   return StageOne;

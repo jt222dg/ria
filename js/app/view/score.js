@@ -1,4 +1,4 @@
-console.log("SYSTEM: Content view loading...");
+console.log("SYSTEM: Score view loading...");
 
 define(function(require) {
   
@@ -6,11 +6,11 @@ define(function(require) {
   var Backbone        = require('backbone');
   var _               = require('underscore');
   var $               = require('jquery');
-  var contentTemplate = require('text!template/content.html');
+  var contentTemplate = require('text!template/score.html');
   
   return Backbone.View.extend({
     
-    el : "#content-element",
+    el : "#subcontent-element",
     
     defaults : {
     },
@@ -19,8 +19,8 @@ define(function(require) {
     },
     
     render : function() {
-      
-      var template = _.template(contentTemplate, {});
+      var variables = { scores : this.model.models };
+      var template = _.template(contentTemplate, variables);
       this.$el.html(template);
     }
     

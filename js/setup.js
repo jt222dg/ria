@@ -6,25 +6,26 @@ require.config({
 
   paths: {
     // Base folder paths
-    app        : '../app',
-    view       : '../app/view',
-    model      : '../app/model',
-    controller : '../app/controller',
-    template   : '../../template',
-    game       : '../game',
-    component  : '../game/component',
-    entity     : '../game/entity',
-    system     : '../game/system',
-    utility    : '../utility',
+    app          : '../app',
+    view         : '../app/view',
+    model        : '../app/model',
+    collection   : '../app/collection',
+    template     : '../../template',
+    game         : '../game',
+    component    : '../game/component',
+    entity       : '../game/entity',
+    system       : '../game/system',
+    utility      : '../utility',
     
     // Lib paths
-    jquery     : 'jquery/jquery',
-    require    : 'require/require',
-    text       : 'require/text',
-    'bb-raw'   : 'backbone/backbone',
-    backbone   : 'backbone/backbone-module',
-    underscore : 'underscore/underscore',
-    bootstrap  : 'bootstrap/bootstrap.min',
+    jquery       : 'jquery/jquery',
+    require      : 'require/require',
+    text         : 'require/text',
+    'bb-raw'     : 'backbone/backbone',
+    backbone     : 'backbone/backbone-module',
+    localstorage : 'backbone/backbone-localstorage',
+    underscore   : 'underscore/underscore',
+    bootstrap    : 'bootstrap/bootstrap.min',
     
     // Other
     base       : '../utility/base'
@@ -49,6 +50,6 @@ require.config({
 
 console.log("SYSTEM: Main module loading...");
 
-require(["app/app"], function(app) {
-  app.run();
+require(["app/app", "jquery"], function(app, $) {
+  $(app.run());
 });

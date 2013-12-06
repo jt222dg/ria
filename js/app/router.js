@@ -4,26 +4,9 @@ define(function(require) {
   
   // Required modules
   var Backbone    = require('backbone');
-  var ViewHandler = require('app/view-handler');
-  var GameHandler = require('game/controller/main');
-  
-  // Page type enum
-  var PageType = {
-    MAIN  : 0,
-    GAME  : 1,
-    ABOUT : 2
-  };
-
-  // Private variables
-  var lastPage = PageType.MAIN;
-  
-  function cleanLastVisited(type) {
-    if (type === PageType.GAME) {
-      GameHandler.stopGame();
-    }
-      
-    lastPage = type;
-  }
+  var ViewHandler = require('view/handler');
+  var GameHandler = require('game/game-handler');
+  var PageType    = require('app/pagetype');
   
   return Backbone.Router.extend({
     routes : {
@@ -31,36 +14,48 @@ define(function(require) {
       'index'    : 'index',
       'game'     : 'game',
       'about'    : 'about',
+      'scores'   : 'scores',
       '*default' : 'def'
-    },
-    
-    defaults : {
-      viewHandler : undefined
     },
     
     initialize : function() {
       this.viewHandler = new ViewHandler();
+      this.gameHandler = new GameHandler();
+      this.lastPage    = PageType.MAIN;
+    },
+    
+    manageGame : function(currentPage) {
+      if (this.lastPage === PageType.GAME) {
+        this.gameHandler.stopGame();
+      } if (currentPage === PageType.GAME) {
+        this.gameHandler.startGame();
+      }
+        
+      this.lastPage = currentPage;
     },
     
     index : function() {
-      cleanLastVisited(PageType.MAIN);
       this.viewHandler.renderMainPage();
+      this.manageGame(PageType.MAIN);
     },
     
     game : function() {
-      cleanLastVisited(PageType.GAME);
       this.viewHandler.renderGamePage();
-      GameHandler.startGame();
+      this.manageGame(PageType.GAME);
     },
     
     about : function() {
-      cleanLastVisited(PageType.ABOUT);
       this.viewHandler.renderAboutPage();
+      this.manageGame(PageType.ABOUT);
+    },
+    
+    scores : function() {
+      this.viewHandler.renderScoresPage();
+      this.manageGame(PageType.SCORES);
     },
     
     def : function(def) {
-      cleanLastVisited(PageType.MAIN);
-      console.log("in default route");
+      this.manageGame(PageType.MAIN);
     }
   });
 });

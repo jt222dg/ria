@@ -18,8 +18,7 @@ define( function(require) {
     },
     
     render : function() {
-      var variables = { searchLabel : "Search:" };
-      var template = _.template(aboutTemplate, variables);
+      var template = _.template(aboutTemplate, {});
       this.$el.html(template);
     }
   });

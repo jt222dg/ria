@@ -5,8 +5,8 @@ define(function(require) {
   
   return Backbone.Model.extend({
     defaults : {
-      name        : 'new technique',
-      description : 'empty'
+      name        : '',
+      amount      : 0
     },
     
     initialize : function() {
