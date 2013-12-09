@@ -10,7 +10,6 @@ define(function(require) {
     localStorage : new Backbone.LocalStorage("scores"),
 
     initialize : function() {
-      console.log(this.localStorage);
     }
   });
 });
