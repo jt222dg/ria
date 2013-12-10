@@ -61,6 +61,7 @@ console.log("SYSTEM: Test module loading...");
 require(['jquery', 'jasmine-html', 'jasmine-blanket'], function($, jasmine, blanket) {
   
   window.blanket.options('filter', ['app/', 'game/']); // data-cover-only
+  window.blanket.options('antifilter', ['spec/']); // data-cover-only
 
   var specs = [];
   specs.push('spec/app/score.test.js');
