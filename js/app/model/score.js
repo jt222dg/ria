@@ -11,6 +11,10 @@ define(function(require) {
     
     initialize : function() {
       
+    },
+    
+    notTested : function() {
+      return "a";
     }
   });
 });

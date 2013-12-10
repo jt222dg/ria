@@ -1,0 +1,84 @@
+console.log("SYSTEM: Conifguring RequireJS..");
+
+require.config({
+
+  baseUrl: '../js/lib',
+
+  paths: {
+    // Base folder paths
+    app            : '../app',
+    view           : '../app/view',
+    model          : '../app/model',
+    collection     : '../app/collection',
+    template       : '../../template',
+    game           : '../game',
+    component      : '../game/component',
+    entity         : '../game/entity',
+    system         : '../game/system',
+    utility        : '../utility',
+    spec           : '../../test/spec',
+    
+    // Lib paths
+    jquery         : 'jquery/jquery',
+    text           : 'require/text',
+    'bb-raw'       : 'backbone/backbone',
+    backbone       : 'backbone/backbone-module',
+    localstorage   : 'backbone/backbone-localstorage',
+    underscore     : 'underscore/underscore',
+    bootstrap      : 'bootstrap/bootstrap.min',
+    jasmine        : 'jasmine/jasmine',
+    'jasmine-html' : 'jasmine/jasmine-html',
+    'jasmine-blanket' : 'jasmine/jasmine-blanket'
+  },
+  
+  shim: {
+    'bb-raw' : {
+      deps    : ['underscore', 'jquery'],
+      exports : 'Backbone'
+    },
+    'underscore' : {
+      exports : '_'
+    },
+    'bootstrap' : {
+      deps    : ['jquery']
+    },
+    jasmine: {
+      exports: 'jasmine'
+    },
+    'jasmine-html': {
+      deps: ['jasmine'],
+      exports: 'jasmine'
+    },
+    'jasmine-blanket': {
+      deps: ['jasmine'],
+      exports: 'jasmine'
+    }
+  }
+});
+
+console.log("SYSTEM: Test module loading...");
+
+require(['jquery', 'jasmine-html', 'jasmine-blanket'], function($, jasmine, blanket) {
+  
+  window.blanket.options('filter', ['app/', 'game/']); // data-cover-only
+
+  var specs = [];
+  specs.push('spec/app/score.test.js');
+  specs.push('spec/game/game.test.js');
+ 
+  $(function(){
+    require(specs, function(){
+      //jasmineEnv.execute();
+      var jasmineEnv = jasmine.getEnv();
+      jasmineEnv.updateInterval = 250;
+      var htmlReporter = new jasmine.HtmlReporter();
+  
+      jasmineEnv.addReporter(htmlReporter);
+      jasmineEnv.specFilter = function (spec) {
+          return htmlReporter.specFilter(spec);
+      };
+      jasmineEnv.addReporter(new jasmine.BlanketReporter());
+      jasmineEnv.currentRunner().execute();
+    });
+  });
+});

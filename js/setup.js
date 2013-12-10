@@ -19,7 +19,6 @@ require.config({
     
     // Lib paths
     jquery       : 'jquery/jquery',
-    require      : 'require/require',
     text         : 'require/text',
     'bb-raw'     : 'backbone/backbone',
     backbone     : 'backbone/backbone-module',

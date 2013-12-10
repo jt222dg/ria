@@ -1,102 +1,13 @@
-<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"
-  "http://www.w3.org/TR/html4/loose.dtd">
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <title>Jasmine test runner</title>
 
-<html>
-<head>
-    <title>Jasmine Spec Runner</title>
-    <link rel="stylesheet" type="text/css" href="../css/jasmine.css">
-    <script type="text/javascript" src="../js/lib/jasmine/jasmine.js"></script>
-    <script type="text/javascript" src="../js/lib/jasmine/jasmine-html.js"></script>
-    <script type="text/javascript" src="../js/lib/helpers/console-runner.js"></script>
-    <script type="text/javascript" src="../node_modules/requirejs/require.js"></script>
-    <script type="text/javascript" 
-    data-cover-only="['code/']" 
-    data-cover-never="['all.tests','code/tests','../../js/lib']" 
-    src="../js/lib/blanket/blanket.js"></script>
-    <script type="text/javascript" src="../js/lib/blanket/jasmine-blanket.js"></script>
+  </head>
+  
+  <body>
+    <link href="../css/jasmine.css" rel="stylesheet" />
     
-
-    <script type="text/javascript">
-      if (window.require && typeof (window.require.config) === 'function') {
-        require.config({
-            baseUrl: './code',
-            
-            paths : {
-              app            : '../../js/app',
-              model          : '../../js/app/model',
-              collection     : '../../js/app/collection',
-              
-              // Lib paths
-              jquery       : '../../js/lib/jquery/jquery',
-              require      : '../../js/lib/require/require',
-              text         : '../../js/lib/require/text',
-              'bb-raw'     : '../../js/lib/backbone/backbone',
-              backbone     : '../../js/lib/backbone/backbone-module',
-              localstorage : '../../js/lib/backbone/backbone-localstorage',
-              underscore   : '../../js/lib/underscore/underscore',
-              'bb-raw'     : '../../js/lib/backbone/backbone',
-              backbone     : '../../js/lib/backbone/backbone-module'
-            },
-            
-            shim: {
-              'bb-raw' : {
-                deps    : ['underscore', 'jquery'],
-                exports : 'Backbone'
-              },
-              'underscore' : {
-                exports : '_'
-              },
-              'bootstrap' : {
-                deps    : ['jquery']
-              },
-              'base' : {
-                deps    : ['Backbone']
-              }
-            }
-        });
-      }
-    </script>
-    <script type="text/javascript" src="code/all.tests.jasmine.js"></script>
-
-    <script type="text/javascript">
-        (function () {
-            window.blanketTestJasmineExpected=2;
-
-            var jasmineEnv = jasmine.getEnv();
-            jasmineEnv.updateInterval = 1000;
-            
-            var htmlReporter = new jasmine.HtmlReporter();
-            var oldResult = htmlReporter.reportRunnerResults;
-              
-            jasmineEnv.addReporter(htmlReporter);
-
-             /* this is just for our automated tests */
-              window.jasmine_phantom_reporter = new jasmine.ConsoleReporter;
-              
-              jasmineEnv.addReporter(jasmine_phantom_reporter);
-              /*   */
-
-            jasmineEnv.specFilter = function (spec) {
-                return htmlReporter.specFilter(spec);
-            };
-
-            var currentWindowOnload = window.onload;
-             window.onload = function() {
-                if (currentWindowOnload) {
-                  currentWindowOnload();
-                }
-                execJasmine();
-
-
-              };
-
-              function execJasmine() {
-                jasmineEnv.execute();
-              }
-
-        })();
-    </script>
-</head>
-<body>
-</body>
+    <script type="text/javascript" src="../js/lib/require/require.js" data-main="setup.js"></script>
+  </body>
 </html>
