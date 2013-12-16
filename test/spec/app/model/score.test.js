@@ -1,32 +1,39 @@
 define(function(require) {
   
-  var Score = require('model/score');
+  var Score   = require('model/score');
+  var jasmine = require('jasmine-html');
   
-  return describe("app/model/score", function() {
-    beforeEach(function () {
-      this.score = new Score();
+  var env = jasmine.getEnv();
+  
+  return env.describe("app/model/score", function() {
+    
+    env.beforeEach(function () {
+      
+      this.spec = env.currentSpec;
+      
+      this.score    = new Score();
       this.mockData = { score : 50, name : "Jesper" };
     });
     
-    describe('Initialization', function() {
-      it('Name should be empty', function() {
-        expect(this.score.get("name")).toEqual("");
+    env.describe('Initialization', function() {
+      env.it('Name should be empty', function() {
+        this.spec.expect(this.score.get("name")).toEqual("");
       });
       
-      it('Amount should be 0', function() {
-        expect(this.score.get("amount")).toEqual(0);
+      env.it('Amount should be 0', function() {
+        this.spec.expect(this.score.get("amount")).toEqual(0);
       });
     });
     
-    describe('Setting values', function() {
-      it('Name should be jesper', function() {
+    env.describe('Setting values', function() {
+      env.it('Name should be jesper', function() {
         this.score.set("name", "jesper");
-        expect(this.score.get("name")).toEqual("jesper");
+        this.spec.expect(this.score.get("name")).toEqual("jesper");
       });
       
-      it('Amount should be 50', function() {
+      env.it('Amount should be 50', function() {
         this.score.set("amount", 50);
-        expect(this.score.get("amount")).toEqual(50);
+        this.spec.expect(this.score.get("amount")).toEqual(50);
       });
     });
   });

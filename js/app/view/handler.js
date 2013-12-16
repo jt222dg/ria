@@ -19,6 +19,8 @@ define(function(require) {
   var ViewType    = require('view/viewtype');
   var PageType    = require('view/pagetype');
   
+  var _           = require('underscore');
+  
   return Backbone.View.extend({
     defaults : {
     },
@@ -65,12 +67,38 @@ define(function(require) {
     },
     
     renderScoresPage : function() {
+      var scores = new Scores();
       
-      var scores = new Scores([
-        new Score({name : "Jesper", amount : 100}),
-        new Score({name : "Alan",  amount  : 1337}),
-        new Score({name : "John",  amount  : 350}),
-      ]);
+      scores.fetch();
+      
+      var model;
+      while (model = scores.first()) {
+        model.destroy();
+      }
+      
+      if (scores.findWhere({ name : "Jesper"}) === undefined) {
+        scores.add(new Score({ name : "Jesper", amount : "5000" }));
+      }
+      
+      if (scores.findWhere({ name : "Mya"}) === undefined) {
+        scores.add(new Score({ name : "Mya", amount : "20000" }));
+      }
+      
+      if (scores.findWhere({ name : "Luffy"}) === undefined) {
+        scores.add(new Score({ name : "Luffy", amount : "10000" }));
+      }
+      
+      if (scores.findWhere({ name : "Lucy"}) === undefined) {
+        scores.add(new Score({ name : "Lucy", amount : "7500" }));
+      }
+      
+      if (scores.findWhere({ name : "Reyna"}) === undefined) {
+        scores.add(new Score({ name : "Reyna", amount : "13" }));
+      }
+      
+      scores.forEach(function(model) {
+        model.save();
+      });
       
       ViewFactory.changeView(ViewType.SUBCONTENT, new ScoresView({ model : scores }));
     }

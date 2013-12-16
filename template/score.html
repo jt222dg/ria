@@ -1,6 +1,21 @@
-<% _.each(scores, function(score) { %>
-  <tr>
-    <td><%= score.get('name') %></td>
-    <td><%= score.get('amount') %></td>
-  </tr>
-<% }); %>
+<table>
+  <thead>
+    <tr>
+      <td>Name</td>
+      <td>Score</td>
+    </tr>
+  </thead>
+  <tfoot>
+    <tr>
+      <td colspace="2">last updated: blablabla</td>
+    </tr>
+  </tfoot>
+  <tbody>
+    <% _.each(scores, function(score) { %>
+      <tr>
+        <td><%= score.get('name') %></td>
+        <td><%= score.get('amount') %></td>
+      </tr>
+    <% }); %>
+  </tbody>
+</table>

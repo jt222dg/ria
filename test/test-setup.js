@@ -63,11 +63,12 @@ require(['jquery', 'jasmine-html', 'jasmine-blanket'], function($, jasmine, blan
 
   var specs = [];
   specs.push('spec/app/model/score.test.js');
+  specs.push('spec/app/collection/scores.test.js');
   specs.push('spec/ces/component/displacement.test.js');
  
   $(function(){
     require(specs, function(){
-      //jasmineEnv.execute();
+      
       var jasmineEnv = jasmine.getEnv();
       jasmineEnv.updateInterval = 250;
       var htmlReporter = new jasmine.HtmlReporter();
@@ -76,6 +77,7 @@ require(['jquery', 'jasmine-html', 'jasmine-blanket'], function($, jasmine, blan
       jasmineEnv.specFilter = function (spec) {
           return htmlReporter.specFilter(spec);
       };
+      
       jasmineEnv.addReporter(new jasmine.BlanketReporter());
       jasmineEnv.currentRunner().execute();
     });

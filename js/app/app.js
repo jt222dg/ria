@@ -4,7 +4,7 @@ define(function(require) {
   
   // Required modules
   var Backbone = require('backbone');
-  var Router   = require('app/router');
+  var Router   = require('router');
   
   return {
     run : function() {

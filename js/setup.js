@@ -25,7 +25,7 @@ require.config({
     bootstrap    : 'bootstrap/bootstrap.min',
     
     // Other
-    base       : '../utility/base'
+    router       : '../router'
   },
   
   shim: {

@@ -1,15 +1,19 @@
 define(function(require) {
   
   var Displacement = require('ces/component/displacement');
+  var jasmine = require('jasmine-html');
   
-  return describe("game/component/displacement", function() {
-    beforeEach(function () {
+  var env = jasmine.getEnv();
+  
+  return env.describe("game/component/displacement", function() {
+    env.beforeEach(function () {
       this.displacement = new Displacement();
+      this.spec = env.currentSpec;
     });
     
-    describe('Initialization', function() {
-      it('Name should be empty', function() {
-        expect(this.displacement.x).toEqual(0);
+    env.describe('Initialization', function() {
+      env.it('Name should be empty', function() {
+        this.spec.expect(this.displacement.x).toEqual(0);
       });
     });
   });

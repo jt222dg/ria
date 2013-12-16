@@ -6,9 +6,11 @@ define(function(require) {
                      require('localstorage');
 
   return Backbone.Collection.extend({
-    model : Score,
+    model        : Score,
     localStorage : new Backbone.LocalStorage("scores"),
-
+    
+    comparator : 'amount',
+    
     initialize : function() {
     }
   });
