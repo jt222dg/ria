@@ -62,7 +62,7 @@ require(['jquery', 'jasmine-html', 'jasmine-blanket'], function($, jasmine, blan
   window.blanket.options('antifilter', ['spec/']);             // data-cover-never (testing specs)
 
   var specs = [];
-  specs.push('spec/app/score.test.js');
+  specs.push('spec/app/model/score.test.js');
   specs.push('spec/ces/component/displacement.test.js');
  
   $(function(){

@@ -1,4 +1,7 @@
-define(['ces/component/displacement'], function(Displacement) {
+define(function(require) {
+  
+  var Displacement = require('ces/component/displacement');
+  
   return describe("game/component/displacement", function() {
     beforeEach(function () {
       this.displacement = new Displacement();

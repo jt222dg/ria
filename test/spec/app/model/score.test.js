@@ -1,4 +1,7 @@
-define(['model/score'], function(Score) {
+define(function(require) {
+  
+  var Score = require('model/score');
+  
   return describe("app/model/score", function() {
     beforeEach(function () {
       this.score = new Score();
