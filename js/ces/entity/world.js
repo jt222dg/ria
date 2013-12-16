@@ -1,4 +1,5 @@
 define(function(require) {
+  
   var World = function() {
     this._mask = [];
     

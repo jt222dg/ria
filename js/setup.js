@@ -12,9 +12,7 @@ require.config({
     collection   : '../app/collection',
     template     : '../../template',
     game         : '../game',
-    component    : '../game/component',
-    entity       : '../game/entity',
-    system       : '../game/system',
+    ces          : '../ces',
     utility      : '../utility',
     
     // Lib paths

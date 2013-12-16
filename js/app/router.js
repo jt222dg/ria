@@ -6,7 +6,7 @@ define(function(require) {
   var Backbone    = require('backbone');
   var ViewHandler = require('view/handler');
   var GameHandler = require('game/game-handler');
-  var PageType    = require('app/pagetype');
+  var PageType    = require('view/pagetype');
   
   return Backbone.Router.extend({
     routes : {
@@ -35,22 +35,22 @@ define(function(require) {
     },
     
     index : function() {
-      this.viewHandler.renderMainPage();
+      this.viewHandler.renderPage(PageType.MAIN);
       this.manageGame(PageType.MAIN);
     },
     
     game : function() {
-      this.viewHandler.renderGamePage();
+      this.viewHandler.renderPage(PageType.GAME);
       this.manageGame(PageType.GAME);
     },
     
     about : function() {
-      this.viewHandler.renderAboutPage();
+      this.viewHandler.renderPage(PageType.ABOUT);
       this.manageGame(PageType.ABOUT);
     },
     
     scores : function() {
-      this.viewHandler.renderScoresPage();
+      this.viewHandler.renderPage(PageType.SCORES);
       this.manageGame(PageType.SCORES);
     },
     

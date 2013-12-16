@@ -1,8 +1,8 @@
 define(function(require){
   
-  var MovementSystem  = require('system/movement-system');
-  var CollisionSystem = require('system/collision-system');
-  var RenderSystem    = require('system/render-system');
+  var MovementSystem  = require('ces/system/movement-system');
+  var CollisionSystem = require('ces/system/collision-system');
+  var RenderSystem    = require('ces/system/render-system');
   
   var SystemManager = function() {
     this._movementSystem  = new MovementSystem();

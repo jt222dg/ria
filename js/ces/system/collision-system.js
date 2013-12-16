@@ -1,9 +1,9 @@
 define(function(require) {
   
   // Required modules
-  var System        = require('system/system');
-  var World         = require('entity/world');
-  var Type          = require('component/type');
+  var System        = require('ces/system/system');
+  var World         = require('ces/entity/world');
+  var Type          = require('ces/component/type');
   var _             = require('underscore');
   var $             = require('jquery');
   

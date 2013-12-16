@@ -1,12 +1,12 @@
 define(function(require) {
   
   // Required modules
-  var Type         = require('component/type');
-  var Displacement = require('component/displacement');
-  var Velocity     = require('component/velocity');
-  var Appearance   = require('component/appearance');
-  var Physics      = require('component/physics');
-  var World        = require('entity/world');
+  var Type         = require('ces/component/type');
+  var Displacement = require('ces/component/displacement');
+  var Velocity     = require('ces/component/velocity');
+  var Appearance   = require('ces/component/appearance');
+  var Physics      = require('ces/component/physics');
+  var World        = require('ces/entity/world');
   
   var EntityManager = function(world) {
     //this.initWorld();

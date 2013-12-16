@@ -17,6 +17,7 @@ define(function(require) {
   var Scores      = require('collection/scores');
   
   var ViewType    = require('view/viewtype');
+  var PageType    = require('view/pagetype');
   
   return Backbone.View.extend({
     defaults : {
@@ -39,23 +40,31 @@ define(function(require) {
       }
     },
     
-    renderGamePage : function() {
+    renderPage : function(pagetype) {
       this.renderMain();
+      
+      switch (pagetype) {
+        case PageType.MAIN:   this.renderMainPage();   break;
+        case PageType.GAME:   this.renderGamePage();   break;
+        case PageType.ABOUT:  this.renderAboutPage();  break;
+        case PageType.SCORES: this.renderScoresPage(); break;
+        default: console.log("invalid page type.");    break;
+      }
+    },
+    
+    renderGamePage : function() {
       ViewFactory.changeView(ViewType.SUBCONTENT, new GameView());
     },
     
     renderMainPage : function() {
-      this.renderMain();
       ViewFactory.changeView(ViewType.SUBCONTENT, new InfoView());
     },
     
     renderAboutPage : function() {
-      this.renderMain();
       ViewFactory.changeView(ViewType.SUBCONTENT, new AboutView());
     },
     
     renderScoresPage : function() {
-      this.renderMain();
       
       var scores = new Scores([
         new Score({name : "Jesper", amount : 100}),

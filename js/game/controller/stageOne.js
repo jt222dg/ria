@@ -2,8 +2,8 @@ define(function(require) {
   
   // Required modules
   var _             = require('underscore');
-  var EntityManager = require('entity/entity-manager');
-  var SystemManager = require('system/system-manager');
+  var EntityManager = require('ces/entity/entity-manager');
+  var SystemManager = require('ces/system/system-manager');
   
   var StageOne = function() {
     this._addTimer = 0.0;

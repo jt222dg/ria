@@ -1,7 +1,7 @@
 define(function(require) {
   
   // Required Modules
-  var Component = require('component/component');
+  var Component = require('ces/component/component');
   var _         = require('underscore');
   
   var Physics = function() {

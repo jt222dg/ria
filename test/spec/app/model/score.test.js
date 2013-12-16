@@ -1,5 +1,5 @@
 define(['model/score'], function(Score) {
-  return describe("app/mode/score", function() {
+  return describe("app/model/score", function() {
     beforeEach(function () {
       this.score = new Score();
       this.mockData = { score : 50, name : "Jesper" };
