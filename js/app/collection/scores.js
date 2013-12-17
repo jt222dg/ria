@@ -9,7 +9,9 @@ define(function(require) {
     model        : Score,
     localStorage : new Backbone.LocalStorage("scores"),
     
-    comparator : 'amount',
+    comparator : function(model) {
+      return -(parseInt(model.get('amount')));
+    },
     
     initialize : function() {
     }

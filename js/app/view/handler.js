@@ -77,23 +77,23 @@ define(function(require) {
       }
       
       if (scores.findWhere({ name : "Jesper"}) === undefined) {
-        scores.add(new Score({ name : "Jesper", amount : "5000" }));
+        scores.add(new Score({ name : "Jesper", amount : 5000 }));
       }
       
       if (scores.findWhere({ name : "Mya"}) === undefined) {
-        scores.add(new Score({ name : "Mya", amount : "20000" }));
+        scores.add(new Score({ name : "Mya", amount : 20000 }));
       }
       
       if (scores.findWhere({ name : "Luffy"}) === undefined) {
-        scores.add(new Score({ name : "Luffy", amount : "10000" }));
+        scores.add(new Score({ name : "Luffy", amount : 10000 }));
       }
       
       if (scores.findWhere({ name : "Lucy"}) === undefined) {
-        scores.add(new Score({ name : "Lucy", amount : "7500" }));
+        scores.add(new Score({ name : "Lucy", amount : 7500 }));
       }
       
       if (scores.findWhere({ name : "Reyna"}) === undefined) {
-        scores.add(new Score({ name : "Reyna", amount : "13" }));
+        scores.add(new Score({ name : "Reyna", amount : 13 }));
       }
       
       scores.forEach(function(model) {
