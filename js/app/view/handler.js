@@ -67,7 +67,7 @@ define(function(require) {
     },
     
     renderScoresPage : function() {
-      var scores = new Scores();
+      var scores = new Scores([], { storage : "scores" });
       
       scores.fetch();
       
