@@ -3,24 +3,14 @@ console.log("SYSTEM: Nav view loading...");
 define(function(require) {
   
   // Required modules
+  var GenericView = require('view/generic-view');
   var Backbone    = require('backbone');
   var _           = require('underscore');
   var $           = require('jquery');
-  var navTemplate = require('text!template/nav.html');
   
-  return Backbone.View.extend({
-    
-    el : "#navigation-element",
-    
-    defaults : {
-    },
-    
-    initialize : function() {
-    },
-
+  var navView = GenericView.extend({
     render : function() {
-      var template = _.template(navTemplate, {});
-      this.$el.html(template);
+      GenericView.prototype.render.call(this);
       
       switch (Backbone.history.fragment) {
         case "index"  : this.activateHomeButton();   break;
@@ -58,4 +48,6 @@ define(function(require) {
       $('#scores').parent().addClass('active');
     }
   });
+
+  return navView;
 });

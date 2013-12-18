@@ -14,9 +14,13 @@ define(function(require) {
     },
     
     initialize : function(models, options) {
-      if (this.options && this.options.storage) {
-        this.localStorage = new Backbone.LocalStorage(options.storage);
+      if (options && options.storage) {
+        this.initLocalStorage(options.storage);
       }
+    },
+    
+    initLocalStorage : function(storage) {
+      this.localStorage = new Backbone.LocalStorage(storage);
     }
   });
 });

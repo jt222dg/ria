@@ -13,7 +13,7 @@ define(function(require) {
       
       this.spec = env.currentSpec;
       
-      this.scores = new Scores();
+      this.scores = new Scores([], {});
       this.mockData = {
         scores : [
           new Score({ name : "Reyna",  amount : 50 }),
@@ -70,12 +70,21 @@ define(function(require) {
         var firstName = this.scores.first().get("name");
         this.scores.first().destroy();
         
-        // Try to find the removed model in the collection by it's name
-        // And assert that it was indeed removed
+        // Assert that the removed model is no longer in the collection
         this.spec.expect(this.scores.where( { name : firstName })[0]).toBeUndefined();
         
-        // Make sure other models are still in the collection
+        // Make sure all other models are still in the collection
         this.spec.expect(this.scores.models.length).toEqual(beforeRemove-1);
+      });
+    });
+    
+    env.describe('LocalStorage', function() {
+      env.it('LocalStorage is initialized', function() {
+        this.scores.initLocalStorage = jasmine.createSpy("initLocalStorage() spy").andCallFake(function() {
+          return arguments[0];
+        });
+        
+        this.spec.expect(this.scores.initLocalStorage("test")).toEqual("test");
       });
     });
   });

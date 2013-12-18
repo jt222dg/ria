@@ -4,9 +4,9 @@ define(function(require) {
   
   // Required modules
   var Backbone    = require('backbone');
-  var ViewHandler = require('view/handler');
+  var ViewHandler = require('view/helpers/handler');
   var GameHandler = require('game/game-handler');
-  var PageType    = require('view/pagetype');
+  var PageType    = require('view/helpers/pagetype');
   var _           = require('underscore');
   
   return Backbone.Router.extend({
