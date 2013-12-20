@@ -25,10 +25,10 @@ define( function(require) {
     render : function() {
       var html = this.template ? _.template(this.template, {}) : "Undefined template";
       
-      if (this.$el) {
+      if (this.template) {
         this.$el.html(html);
       } else {
-        console.log("view el is undefined.");
+        console.log("view template is undefined.");
       }
     }
   });

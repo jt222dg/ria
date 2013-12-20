@@ -13,6 +13,12 @@ define(function(require) {
       return -(parseInt(model.get('amount')));
     },
     
+    save : function() {
+      this.each(function(model) {
+        model.save();
+      });
+    },
+    
     initialize : function(models, options) {
       if (options && options.storage) {
         this.initLocalStorage(options.storage);

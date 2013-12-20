@@ -6,27 +6,29 @@ require.config({
 
   paths: {
     // Base folder paths
-    app             : '../app',
-    view            : '../app/view',
-    model           : '../app/model',
-    collection      : '../app/collection',
-    template        : '../../template',
-    game            : '../game',
-    ces             : '../ces',
-    utility         : '../utility',
-    spec            : '../../test/spec',
+    app               : '../app',
+    view              : '../app/view',
+    model             : '../app/model',
+    collection        : '../app/collection',
+    template          : '../../template',
+    game              : '../game',
+    ces               : '../ces',
+    utility           : '../utility',
+    spec              : '../../test/spec',
     
     // Lib paths
-    jquery         : 'jquery/jquery',
-    text           : 'require/text',
-    'bb-raw'       : 'backbone/backbone',
-    backbone       : 'backbone/backbone-module',
-    localstorage   : 'backbone/backbone-localstorage',
-    underscore     : 'underscore/underscore',
-    bootstrap      : 'bootstrap/bootstrap.min',
-    jasmine        : 'jasmine/jasmine',
-    'jasmine-html' : 'jasmine/jasmine-html',
-    'jasmine-blanket' : 'jasmine/jasmine-blanket'
+    jquery            : 'jquery/jquery',
+    text              : 'require/text',
+    'bb-raw'          : 'backbone/backbone',
+    backbone          : 'backbone/backbone-module',
+    localstorage      : 'backbone/backbone-localstorage',
+    underscore        : 'underscore/underscore',
+    bootstrap         : 'bootstrap/bootstrap.min',
+    jasmine           : 'jasmine/jasmine',
+    'jasmine-html'    : 'jasmine/jasmine-html',
+    'jasmine-blanket' : 'jasmine/jasmine-blanket',
+    sinon             : 'sinon/sinon',
+    'jasmine-sinon'   : 'sinon/jasmine-sinon'
   },
   
   shim: {
@@ -40,16 +42,20 @@ require.config({
     'bootstrap' : {
       deps    : ['jquery']
     },
-    jasmine: {
-      exports: 'jasmine'
+    jasmine : {
+      exports : 'jasmine'
     },
-    'jasmine-html': {
-      deps: ['jasmine'],
-      exports: 'jasmine'
+    'jasmine-html' : {
+      deps    : ['jasmine'],
+      exports : 'jasmine'
     },
-    'jasmine-blanket': {
-      deps: ['jasmine'],
-      exports: 'jasmine'
+    'jasmine-blanket' : {
+      deps    : ['jasmine'],
+      exports : 'jasmine'
+    },
+    'jasmine-sinon' : {
+      deps    : ['sinon', 'jasmine'],
+      exports : 'sinon'
     }
   }
 });

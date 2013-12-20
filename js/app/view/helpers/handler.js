@@ -11,8 +11,6 @@ define(function(require) {
   // Views
   var ViewFactory     = require('view/helpers/factory');
   var GenericView     = require('view/generic-view');
-  var NavView         = require('view/nav-view');
-  var ScoresView      = require('view/scores-view');
   
   // Models
   var Score           = require('model/score');
@@ -49,12 +47,13 @@ define(function(require) {
     
     renderMain : function() {
       if (this.needsToUpdateMain) {
+        
         ViewFactory.changeView(ViewType.CONTENT, new GenericView({
           el       : elements.content,
           template : templates.content
         }));
         
-        ViewFactory.changeView(ViewType.NAV, new NavView({
+        ViewFactory.changeView(ViewType.NAV, ViewFactory.getNavView({
           el       : elements.nav,
           template : templates.nav
         }));
@@ -90,7 +89,8 @@ define(function(require) {
         options.model = this.initScores();
       }
       
-      var view = pagetype === PageType.SCORES ? new ScoresView(options) : new GenericView(options);
+      var view = pagetype === PageType.SCORES ? ViewFactory.getScoresView(options) : new GenericView(options);
+      
       ViewFactory.changeView(ViewType.SUBCONTENT, view);
     },
     
@@ -124,9 +124,7 @@ define(function(require) {
         scores.add(new Score({ name : "Reyna", amount : 13 }));
       }
       
-      scores.forEach(function(model) {
-        model.save();
-      });
+      scores.save();
       
       return scores;
     }
