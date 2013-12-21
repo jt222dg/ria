@@ -10,44 +10,73 @@ define(function(require) {
   var GenericView = require('view/generic-view');
   
   return {
-    _activeViews : [],
+    activeViews : [],
     
     setActive : function(type, view) {
+      
       if (view === undefined || !(view instanceof Backbone.View)) {
         return;
       }
       
       this.removeActive(type);
-      this._activeViews[type] = view;
+      this.activeViews[type] = view;
+      
     },
     
     removeActive : function(type) {
-      if (this._activeViews[type] === undefined || !(this._activeViews[type] instanceof Backbone.View)) {
+      
+      if (this.activeViews[type] === undefined || !(this.activeViews[type] instanceof Backbone.View)) {
         return;
       }
       
       // Remove all events attached to the view
-      this._activeViews[type].undelegateEvents();
-      this._activeViews[type].$el.removeData().unbind();
-      this._activeViews[type] = null;
+      this.activeViews[type].undelegateEvents();
+      this.activeViews[type].$el.removeData().unbind();
+      this.activeViews[type] = undefined;
+      
     },
     
     changeView : function(type, newView) {
+      
       this.setActive(type, newView);
-      this._activeViews[type].render();
+      this.activeViews[type].render();
+      
     },
     
     getActiveView : function(type) {
-      return this._activeViews[type];
+      
+      return this.activeViews[type];
+      
     },
     
     renderAll : function() {
-      _.each(this._activeViews, function(view) {
+      
+      _.each(this.activeViews, function(view) {
         view.render();
       });
+      
+    },
+    
+    getGenericView : function(options) {
+      
+      if (options === undefined) return null;
+      var el       = options.el;
+      var template = options.template;
+      
+      if (el === undefined || template === undefined) return null;
+      
+      return new GenericView({ el : el, template : template });
+      
     },
     
     getNavView : function(options) {
+      
+      if (options === undefined) return null;
+      var el       = options.el;
+      var template = options.template;
+      
+      if (el === undefined || template === undefined) return null;
+      
       var NavView = GenericView.extend({
         render : function() {
           GenericView.prototype.render.call(this);
@@ -89,13 +118,19 @@ define(function(require) {
         }
       });
       
-      var el       = options.el;
-      var template = options.template;
+      return new NavView({ el : el, template : template });
       
-      return new NavView({ el : el, template : template});
     },
     
     getScoresView : function(options) {
+      
+      if (options === undefined) return null;
+      var el       = options.el;
+      var template = options.template;
+      var model    = options.model;
+      
+      if (el === undefined || template === undefined || model === undefined) return null;
+      
       var ScoresView = GenericView.extend({
         render : function() {
           var variables = { scores : this.model.models };
@@ -103,12 +138,9 @@ define(function(require) {
           this.$el.html(template);
         }
       });
-    
-      var el       = options.el;
-      var template = options.template;
-      var model    = options.model;
       
       return new ScoresView({ el : el, template : template, model : model });
+      
     }
   };
 });

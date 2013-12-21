@@ -71,6 +71,7 @@ require(['jquery', 'jasmine-html', 'jasmine-blanket'], function($, jasmine, blan
   specs.push('spec/app/model/score.test.js');
   specs.push('spec/app/collection/scores.test.js');
   specs.push('spec/app/view/generic-view.test.js');
+  specs.push('spec/app/view/helpers/factory.test.js');
   specs.push('spec/ces/component/displacement.test.js');
   
   $(function(){

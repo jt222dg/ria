@@ -92,12 +92,11 @@ define(function(require) {
       env.it('el is initialized using onInit', function() {
         
         this.genericView.onInit({ el : this.mockElement });
-        console.log(this.genericView.el);
         this.spec.expect(this.genericView.el).toEqual(this.mockElement);
         
       });
       
-      env.it('fails when rendering without a template', function() {
+      env.it('fails when trying to render without a template', function() {
         
         this.genericView.onInit({ el : this.mockElement });
         this.genericView.render();
@@ -106,9 +105,10 @@ define(function(require) {
         
       });
       
-      env.it('rendering template to $el', function() {
+      env.it('rendering template to $el using render()', function() {
         
         this.genericView.onInit({ el : this.mockElement, template : this.mockTemplate });
+        
         var that = this;
         this.spec.spyOn(this.genericView, 'render').andCallFake(function() {
           that.mockContext.appendChild(document.createTextNode(that.mockTemplate));

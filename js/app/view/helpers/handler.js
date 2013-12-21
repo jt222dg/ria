@@ -10,7 +10,6 @@ define(function(require) {
   
   // Views
   var ViewFactory     = require('view/helpers/factory');
-  var GenericView     = require('view/generic-view');
   
   // Models
   var Score           = require('model/score');
@@ -48,7 +47,7 @@ define(function(require) {
     renderMain : function() {
       if (this.needsToUpdateMain) {
         
-        ViewFactory.changeView(ViewType.CONTENT, new GenericView({
+        ViewFactory.changeView(ViewType.CONTENT, ViewFactory.getGenericView({
           el       : elements.content,
           template : templates.content
         }));
@@ -58,7 +57,7 @@ define(function(require) {
           template : templates.nav
         }));
         
-        ViewFactory.changeView(ViewType.FOOTER, new GenericView({
+        ViewFactory.changeView(ViewType.FOOTER, ViewFactory.getGenericView({
           el       : elements.footer,
           template : templates.footer
         }));
@@ -89,7 +88,7 @@ define(function(require) {
         options.model = this.initScores();
       }
       
-      var view = pagetype === PageType.SCORES ? ViewFactory.getScoresView(options) : new GenericView(options);
+      var view = pagetype === PageType.SCORES ? ViewFactory.getScoresView(options) : ViewFactory.getGenericView(options);
       
       ViewFactory.changeView(ViewType.SUBCONTENT, view);
     },
