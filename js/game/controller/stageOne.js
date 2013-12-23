@@ -11,7 +11,6 @@ define(function(require) {
     this._systemManager = new SystemManager();
     this._entityManager = new EntityManager();
     this._entityManager.initWorld();
-    this._entityManager.createBox(750.0, (Math.random()*340)+1, -60.0, 0.0, 1.0, 10.0, 10.0);
   };
   
   StageOne.prototype.onEvent = function() {
@@ -22,7 +21,16 @@ define(function(require) {
     this._addTimer += delta;
       
     if (this._addTimer >= 0.05) {
-      this._entityManager.createBox(750.0, (Math.random()*340)+1, -60.0, 0.0, 1.0, 10.0, 10.0);
+      this._entityManager.createBox(
+        750.0,                   // position x
+        (Math.random()*340)+1,   // position y
+        -(Math.random()*100)+50, // velocity x
+        0.0,                     // velocity y
+        1.0,                     // mass
+        10.0,                    // width
+        10.0                     // height
+      );
+      
       this._addTimer = 0.0;
     }
     

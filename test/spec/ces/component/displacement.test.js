@@ -1,6 +1,5 @@
 define(function(require) {
   
-  var Component    = require('ces/component/component');
   var Displacement = require('ces/component/displacement');
   var jasmine      = require('jasmine-html');
   
@@ -20,7 +19,7 @@ define(function(require) {
       
     });
     
-    env.describe('Initialization', function() {
+    env.describe('initialization', function() {
       
       env.it('is defined', function() {
         
@@ -52,21 +51,23 @@ define(function(require) {
         
       });
     
-      env.it('x should be 0', function() {
+      env.it('_x is defiend and set to 0', function() {
         
-        this.spec.expect(this.displacement.x).toEqual(0);
+        this.spec.expect(this.displacement._x).toBeDefined();
+        this.spec.expect(this.displacement._x).toEqual(0);
         
       });
       
-      env.it('y should be 0', function() {
+      env.it('_y is defiend and set to 0', function() {
         
-        this.spec.expect(this.displacement.y).toEqual(0);
+        this.spec.expect(this.displacement._x).toBeDefined();
+        this.spec.expect(this.displacement._y).toEqual(0);
         
       });
       
     });
     
-    env.describe('general functionality', function() {
+    env.describe('using properties', function() {
       
       env.beforeEach(function() {
         
@@ -80,33 +81,33 @@ define(function(require) {
         
       });
       
-      env.describe('Setting values', function() {
+      env.describe('setting values', function() {
         
-        env.it('x should be 5.5', function() {
+        env.it('can set _x using x', function() {
           
           this.displacement.x = 5.5;
-          this.spec.expect(this.displacement.x).toEqual(5.5);
+          this.spec.expect(this.displacement._x).toEqual(5.5);
           
         });
         
-        env.it('x should be -135.25', function() {
+        env.it('can get _x using x', function() {
           
-          this.displacement.x = -135.25;
-          this.spec.expect(this.displacement.x).toEqual(-135.25);
+          this.displacement._x = -5.5;
+          this.spec.expect(this.displacement.x).toEqual(-5.5);
           
         });
         
-        env.it('y should be to 99.999', function() {
+        env.it('can set _y using y', function() {
           
           this.displacement.y = 99.999;
-          this.spec.expect(this.displacement.y).toEqual(99.999);
+          this.spec.expect(this.displacement._y).toEqual(99.999);
           
         });
         
-        env.it('y should be -0.001', function() {
+        env.it('can get _y using y', function() {
           
-          this.displacement.y = -0.001;
-          this.spec.expect(this.displacement.y).toEqual(-0.001);
+          this.displacement._y = -99.999;
+          this.spec.expect(this.displacement.y).toEqual(-99.999);
           
         });
         
@@ -114,19 +115,19 @@ define(function(require) {
       
       env.describe('Incrementing values', function() {
         
-        env.it('x should increase from 9 to 10', function() {
+        env.it('can increment _x using x', function() {
           
           this.displacement.x = 9;
           this.displacement.x += 1;
-          this.spec.expect(this.displacement.x).toEqual(10);
+          this.spec.expect(this.displacement._x).toEqual(10);
           
         });
         
-        env.it('y should decrease from -1 to -2', function() {
+        env.it('can decrement _y using y', function() {
           
           this.displacement.y = -1;
           this.displacement.y -= 1;
-          this.spec.expect(this.displacement.y).toEqual(-2);
+          this.spec.expect(this.displacement._y).toEqual(-2);
           
         });
         

@@ -35,7 +35,7 @@ define(function(require) {
       delta     = (startTime - endTime) / 1000;
       delta     = delta < 0.016 ? delta : 0.016;
       endTime   = startTime;
-      
+      console.log(delta);
       if (!eventHandler.getKeys().P) {
         game.onLogic(delta);
       }
