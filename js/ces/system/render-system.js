@@ -34,7 +34,7 @@ define(function(require) {
         d = world.displacement[entity];
         a = world.appearance[entity];
         
-        this._ctx.fillStyle = "rgb(200,0,0)";
+        this._ctx.fillStyle = a.toString();
         this._ctx.fillRect(d.x, d.y, 10.0, 10.0);
       }
     }

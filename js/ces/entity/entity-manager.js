@@ -60,7 +60,9 @@ define(function(require) {
       this._world.physics[entity].w = w;
       this._world.physics[entity].h = h;
       
-      this._world.appearance[entity].name = "Player";
+      this._world.appearance[entity].color.r = 255;
+      this._world.appearance[entity].color.g = 0;
+      this._world.appearance[entity].color.b = 0;
     }
   };
   
@@ -85,7 +87,9 @@ define(function(require) {
       this._world.physics[entity].w = w;
       this._world.physics[entity].h = h;
       
-      this._world.appearance[entity].name = "Box";
+      this._world.appearance[entity].color.r = 0;
+      this._world.appearance[entity].color.g = 255;
+      this._world.appearance[entity].color.b = 0;
     }
     
     return entity;

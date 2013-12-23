@@ -5,15 +5,32 @@ define(function(require) {
   var _ = require('underscore');
   
   var Appearance = function() {
-    this._name = "";
+    this._color = {
+      r : 0,
+      g : 0,
+      b : 0
+    }
   };
   
   _.extend(Appearance.prototype, Component.prototype);
   
-  Object.defineProperty(Appearance.prototype, "name", {
-    get: function()     { return this._name; },
-    set: function(name) { this._name = name; }
+  Object.defineProperty(Appearance.prototype, "color", {
+    get: function()     { return this._color; },
+    set: function(color) { this._color = color; }
   });
+  
+  Appearance.prototype.toString = function() {
+    
+    return (
+      "rgb(" +
+      this.color.r +
+      "," +
+      this.color.g +
+      "," +
+      this.color.b +
+      ")"
+    );
+  };
   
   return Appearance;
 });
