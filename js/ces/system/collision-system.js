@@ -17,7 +17,8 @@ define(function(require) {
   _.extend(CollisionSystem, System);
   
   CollisionSystem.prototype.onRun = function(entityManager) {
-    var world = entityManager.world;
+    
+    var world        = entityManager.world;
     var ENTITY_COUNT = entityManager.ENTITY_COUNT;
     
     if (!(world instanceof World)) return;

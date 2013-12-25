@@ -81,7 +81,7 @@ define(function(require) {
         
       });
       
-      env.describe('setting values', function() {
+      env.describe('getting and setting values', function() {
         
         env.it('can set _x using x', function() {
           

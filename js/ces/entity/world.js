@@ -11,27 +11,27 @@ define(function(require) {
   
   Object.defineProperty(World.prototype, "mask", {
     get: function()     { return this._mask; },
-    set: function(mask) { this._mask = mask; }
+    set: function(mask) { }
   });
   
   Object.defineProperty(World.prototype, "displacement", {
     get: function()             { return this._displacement; },
-    set: function(displacement) { this._displacement = displacement; }
+    set: function(displacement) { }
   });
   
   Object.defineProperty(World.prototype, "velocity", {
     get: function()         { return this._velocity; },
-    set: function(velocity) { this._velocity = velocity; }
+    set: function(velocity) { }
   });
   
   Object.defineProperty(World.prototype, "appearance", {
     get: function()           { return this._appearance; },
-    set: function(appearance) { this._appearance = appearance; }
+    set: function(appearance) { }
   });
   
   Object.defineProperty(World.prototype, "physics", {
     get: function()        { return this._physics; },
-    set: function(physics) { this._physics = physics; }
+    set: function(physics) { }
   });
   
   return World;

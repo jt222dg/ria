@@ -8,10 +8,9 @@ define(function(require) {
   var Physics      = require('ces/component/physics');
   var World        = require('ces/entity/world');
   
-  var EntityManager = function(world) {
-    //this.initWorld();
+  var EntityManager = function(options) {
     this._world = new World();
-    this._ENTITY_COUNT = 1000;
+    this._ENTITY_COUNT = options && options.entitycount ? options.entitycount : 100;
   };
   
   EntityManager.prototype.initWorld = function() {
@@ -64,6 +63,9 @@ define(function(require) {
       this._world.appearance[entity].color.g = 0;
       this._world.appearance[entity].color.b = 0;
     }
+    
+    return entity;
+    
   };
   
   EntityManager.prototype.createBox = function(x, y, vx, vy, mass, w, h) {
@@ -93,17 +95,19 @@ define(function(require) {
     }
     
     return entity;
+    
   };
   
   Object.defineProperty(EntityManager.prototype, "world", {
-    get: function()  { return this._world; },
-    set: function(world) { }
+    get: function()      { return this._world; },
+    set: function(world) { this._world = world; }
   });
   
   Object.defineProperty(EntityManager.prototype, "ENTITY_COUNT", {
-    get: function()  { return this._ENTITY_COUNT; },
-    set: function(ent) { }
+    get: function()    { return this._ENTITY_COUNT; },
+    set: function(ent) { if (ent >= 0) this._ENTITY_COUNT = ent; }
   });
   
   return EntityManager;
+  
 });

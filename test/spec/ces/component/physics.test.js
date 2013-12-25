@@ -51,21 +51,21 @@ define(function(require) {
         
       });
       
-      env.it('_w should be defined and set to 0', function() {
+      env.it('_w is defined and set to 0', function() {
       
         this.spec.expect(this.physics._w).toBeDefined();
         this.spec.expect(this.physics._w).toEqual(0);
         
       });
       
-      env.it('_h should be defined and set to 0', function() {
+      env.it('_h is defined and set to 0', function() {
       
         this.spec.expect(this.physics._h).toBeDefined();
         this.spec.expect(this.physics._h).toEqual(0);
         
       });
       
-      env.it('_mass should be defined and set to 0', function() {
+      env.it('_mass is defined and set to 0', function() {
       
         this.spec.expect(this.physics._mass).toBeDefined();
         this.spec.expect(this.physics._mass).toEqual(0);

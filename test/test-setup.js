@@ -76,6 +76,9 @@ require(['jquery', 'jasmine-html', 'jasmine-blanket'], function($, jasmine, blan
   specs.push('spec/ces/component/appearance.test.js');
   specs.push('spec/ces/component/displacement.test.js');
   specs.push('spec/ces/component/physics.test.js');
+  specs.push('spec/ces/component/velocity.test.js');
+  specs.push('spec/ces/entity/world.test.js');
+  specs.push('spec/ces/entity/entity-manager.test.js');
   
   $(function(){
     require(specs, function(){
