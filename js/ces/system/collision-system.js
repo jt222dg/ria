@@ -7,6 +7,7 @@ define(function(require) {
   var _             = require('underscore');
   var $             = require('jquery');
   
+  // TODO : add physics component as a requirement for the collision system
   var COLLISION_MASK = Type.COMPONENT_DISPLACEMENT | Type.COMPONENT_APPEARANCE;
   var VELOCITY_MASK  = Type.COMPONENT_VELOCITY;
   
@@ -39,4 +40,5 @@ define(function(require) {
   };
   
   return CollisionSystem;
+  
 });

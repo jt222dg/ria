@@ -13,6 +13,8 @@ define(function(require) {
     this._systemManager = new SystemManager();
     this._entityManager = new EntityManager({ entitycount : 350 });
     this._entityManager.initWorld();
+    
+    this._player = this._entityManager.createPlayer(25, 170, 0.0, 0.0, 1.0, 15.0, 15.0);
   };
   
   StageOne.prototype.onEvent = function() {
@@ -35,7 +37,6 @@ define(function(require) {
       var minVelX = -60;
       var velX = Math.floor(Math.random() * (maxVelX - (minVelX) + 1) + (minVelX));
       
-      console.log(velX);
       this._entityManager.createBox(
         750.0, // position x
         posY,  // position y

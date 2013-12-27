@@ -9,8 +9,10 @@ define(function(require) {
   var World        = require('ces/entity/world');
   
   var EntityManager = function(options) {
-    this._world = new World();
+    
+    this._world        = new World();
     this._ENTITY_COUNT = options && options.entitycount ? options.entitycount : 100;
+    
   };
   
   EntityManager.prototype.initWorld = function() {

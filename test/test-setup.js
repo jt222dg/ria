@@ -68,17 +68,30 @@ require(['jquery', 'jasmine-html', 'jasmine-blanket'], function($, jasmine, blan
   window.blanket.options('antifilter', ['spec/']);             // data-cover-never (testing specs)
 
   var specs = [];
+  
+  // App tests
   specs.push('spec/app/model/score.test.js');
   specs.push('spec/app/collection/scores.test.js');
   specs.push('spec/app/view/generic-view.test.js');
   specs.push('spec/app/view/helpers/factory.test.js');
+  
+  // Component tests
   specs.push('spec/ces/component/component.test.js');
   specs.push('spec/ces/component/appearance.test.js');
   specs.push('spec/ces/component/displacement.test.js');
   specs.push('spec/ces/component/physics.test.js');
   specs.push('spec/ces/component/velocity.test.js');
+  
+  // Entity tests
   specs.push('spec/ces/entity/world.test.js');
   specs.push('spec/ces/entity/entity-manager.test.js');
+  
+  // System tests
+  specs.push('spec/ces/system/system.test.js');
+  specs.push('spec/ces/system/system-manager.test.js');
+  specs.push('spec/ces/system/collision-system.test.js');
+  specs.push('spec/ces/system/movement-system.test.js');
+  specs.push('spec/ces/system/render-system.test.js');
   
   $(function(){
     require(specs, function(){

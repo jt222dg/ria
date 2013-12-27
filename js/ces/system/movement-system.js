@@ -6,9 +6,9 @@ define(function(require) {
   var Type   = require('ces/component/type');
   var _      = require('underscore');
   
-  var MOVEMENT_MASK = Type.COMPONENT_DISPLACEMENT | Type.COMPONENT_VELOCITY;
-  
   var MovementSystem = function() {
+    
+    this._MOVEMENT_MASK = Type.COMPONENT_DISPLACEMENT | Type.COMPONENT_VELOCITY;
     
   };
   
@@ -24,12 +24,14 @@ define(function(require) {
     var d;
     
     for (var entity = 0; entity < ENTITY_COUNT; ++entity) {
-      if ((world.mask[entity] & MOVEMENT_MASK) === MOVEMENT_MASK) {
+      if ((world.mask[entity] & this._MOVEMENT_MASK) === this._MOVEMENT_MASK) {
+        
         v = world.velocity[entity];
         d = world.displacement[entity];
         
         d.x += v.x * delta;
         d.y += v.y * delta;
+        
       }
     }
   };

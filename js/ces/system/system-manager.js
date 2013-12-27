@@ -5,9 +5,11 @@ define(function(require){
   var RenderSystem    = require('ces/system/render-system');
   
   var SystemManager = function() {
+    
     this._movementSystem  = new MovementSystem();
     this._renderSystem    = new RenderSystem();
     this._collisionSystem = new CollisionSystem();
+    
   };
   
   SystemManager.prototype.onEvent = function() {
@@ -15,17 +17,26 @@ define(function(require){
   };
   
   SystemManager.prototype.onLogic = function(entityManager, delta) {
+    
     this._movementSystem.onRun(entityManager, delta);
     this._collisionSystem.onRun(entityManager);
+    
   };
   
   SystemManager.prototype.onRender = function(entityManager) {
+    
     this._renderSystem.onRun(entityManager);
+    
   };
   
   SystemManager.prototype.onCleanUp = function() {
     
+    this._movementSystem  = undefined;
+    this._renderSystem    = undefined;
+    this._collisionSystem = undefined;
+    
   };
   
   return SystemManager;
+  
 });

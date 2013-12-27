@@ -19,7 +19,7 @@ define(function(require) {
       
     });
     
-    env.describe('Initialization', function() {
+    env.describe('initialization', function() {
       
       env.it('is defined', function() {
         
