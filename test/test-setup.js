@@ -64,8 +64,19 @@ console.log("SYSTEM: Test module loading...");
 
 require(['jquery', 'jasmine-html', 'jasmine-blanket'], function($, jasmine, blanket) {
   
-  window.blanket.options('filter', ['app/', 'game/', 'ces/']); // data-cover-only (everything that is tested)
-  window.blanket.options('antifilter', ['spec/']);             // data-cover-never (testing specs)
+  // data-cover-only (everything that is tested)
+  window.blanket.options('filter', ['app/', 'game/', 'ces/']);
+  
+  // data-cover-never (testing specs and certain view / event specific classes)
+  window.blanket.options(
+    'antifilter',
+    [
+      'spec/',
+      'ces/system/render-system',
+      'game/canvas-handler',
+      'game/event-handler'
+    ]
+  );
 
   var specs = [];
   
@@ -75,23 +86,32 @@ require(['jquery', 'jasmine-html', 'jasmine-blanket'], function($, jasmine, blan
   specs.push('spec/app/view/generic-view.test.js');
   specs.push('spec/app/view/helpers/factory.test.js');
   
-  // Component tests
+  // CES Component tests
   specs.push('spec/ces/component/component.test.js');
   specs.push('spec/ces/component/appearance.test.js');
   specs.push('spec/ces/component/displacement.test.js');
   specs.push('spec/ces/component/physics.test.js');
   specs.push('spec/ces/component/velocity.test.js');
+  specs.push('spec/ces/component/input.test.js');
   
-  // Entity tests
+  // CES Entity tests
   specs.push('spec/ces/entity/world.test.js');
   specs.push('spec/ces/entity/entity-manager.test.js');
   
-  // System tests
+  // CES System tests
   specs.push('spec/ces/system/system.test.js');
   specs.push('spec/ces/system/system-manager.test.js');
   specs.push('spec/ces/system/collision-system.test.js');
   specs.push('spec/ces/system/movement-system.test.js');
   specs.push('spec/ces/system/render-system.test.js');
+  specs.push('spec/ces/system/input-system.test.js');
+  
+  // Game tests
+  specs.push('spec/game/camera.test');
+  specs.push('spec/game/game-handler.test');
+  
+  // Game Controller tests
+  specs.push('spec/game/controller/stage-one.test');
   
   $(function(){
     require(specs, function(){

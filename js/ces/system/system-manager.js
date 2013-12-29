@@ -3,12 +3,20 @@ define(function(require){
   var MovementSystem  = require('ces/system/movement-system');
   var CollisionSystem = require('ces/system/collision-system');
   var RenderSystem    = require('ces/system/render-system');
+  var InputSystem     = require('ces/system/input-system');
   
   var SystemManager = function() {
     
     this._movementSystem  = new MovementSystem();
     this._renderSystem    = new RenderSystem();
+    this._inputSystem     = new InputSystem();
     this._collisionSystem = new CollisionSystem();
+    
+  };
+  
+  SystemManager.prototype.onInit = function() {
+    
+    this._inputSystem.onInit();
     
   };
   

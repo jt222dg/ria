@@ -3,7 +3,7 @@ define(function(require) {
   var EntityManager = require('ces/entity/entity-manager');
   var World         = require('ces/entity/world');
   
-  var Type          = require('ces/component/type');
+  var Type          = require('ces/component/helpers/type');
   var Displacement  = require('ces/component/displacement');
   var Appearance    = require('ces/component/appearance');
   var Physics       = require('ces/component/physics');
@@ -208,7 +208,7 @@ define(function(require) {
         
         var entity = this.entityManager.createEntity();
         this.spec.expect(entity).toEqual(0);
-        this.entityManager.world.mask[entity] = Type.COMPONENT_DISPLACEMENT;
+        this.entityManager.world.mask[entity] = Type.DISPLACEMENT;
         
         entity = this.entityManager.createEntity();
         this.spec.expect(entity).toEqual(1);
@@ -220,7 +220,7 @@ define(function(require) {
         var entity = -1;
         for (var i = 0, j = this.entityManager.ENTITY_COUNT + 1; i < j; ++i) {
           entity = this.entityManager.createEntity();
-          this.entityManager.world.mask[entity] = Type.COMPONENT_DISPLACEMENT;
+          this.entityManager.world.mask[entity] = Type.DISPLACEMENT;
         }
         
         this.spec.expect(entity).toEqual(this.entityManager.ENTITY_COUNT);
@@ -230,21 +230,21 @@ define(function(require) {
       env.it('deleteEntity removes an previously created entity', function() {
         
         var entity = this.entityManager.createEntity();
-        this.entityManager.world.mask[entity] = Type.COMPONENT_DISPLACEMENT;
-        this.spec.expect(this.entityManager.world.mask[entity]).toEqual(Type.COMPONENT_DISPLACEMENT);
+        this.entityManager.world.mask[entity] = Type.DISPLACEMENT;
+        this.spec.expect(this.entityManager.world.mask[entity]).toEqual(Type.DISPLACEMENT);
         
         this.entityManager.destroyEntity(entity);
-        this.spec.expect(this.entityManager.world.mask[entity]).toEqual(Type.COMPONENT_NONE);
+        this.spec.expect(this.entityManager.world.mask[entity]).toEqual(Type.NONE);
         
       });
       
       env.it('createPlayer creates a player entity', function() {
         
         var playerMask = (
-          Type.COMPONENT_DISPLACEMENT |
-          Type.COMPONENT_APPEARANCE   |
-          Type.COMPONENT_VELOCITY     |
-          Type.COMPONENT_PHYSICS
+          Type.DISPLACEMENT |
+          Type.APPEARANCE   |
+          Type.VELOCITY     |
+          Type.PHYSICS
         );
         
         var player = this.entityManager.createPlayer();
@@ -255,10 +255,10 @@ define(function(require) {
       env.it('createBox creates a box entity', function() {
         
         var boxMask = (
-          Type.COMPONENT_DISPLACEMENT |
-          Type.COMPONENT_APPEARANCE   |
-          Type.COMPONENT_VELOCITY     |
-          Type.COMPONENT_PHYSICS
+          Type.DISPLACEMENT |
+          Type.APPEARANCE   |
+          Type.VELOCITY     |
+          Type.PHYSICS
         );
         
         var box = this.entityManager.createBox();

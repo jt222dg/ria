@@ -4,6 +4,7 @@ define(function(require) {
   var MovementSystem  = require('ces/system/movement-system');
   var RenderSystem    = require('ces/system/render-system');
   var CollisionSystem = require('ces/system/collision-system');
+  var InputSystem     = require('ces/system/input-system');
   
   var jasmine         = require('jasmine-html');
   
@@ -73,6 +74,13 @@ define(function(require) {
         
         this.spec.expect(this.systemManager._renderSystem).toBeDefined();
         this.spec.expect(this.systemManager._renderSystem instanceof RenderSystem).toBeTruthy();
+        
+      });
+      
+      env.it('_inputSystem is defined and is an instans of InputSystem', function() {
+        
+        this.spec.expect(this.systemManager._inputSystem).toBeDefined();
+        this.spec.expect(this.systemManager._inputSystem instanceof InputSystem).toBeTruthy();
         
       });
       

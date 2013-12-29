@@ -34,6 +34,7 @@ define(function(require) {
       case 80: Keys.P = !Keys.P; break;
       default: break;
     }
+    
   };
   
   EventHandler.prototype.onKeyUp = function(event) {

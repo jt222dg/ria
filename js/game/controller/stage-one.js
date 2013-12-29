@@ -6,15 +6,17 @@ define(function(require) {
   var SystemManager = require('ces/system/system-manager');
   
   var StageOne = function() {
+    
     this._addTimer       = 0.0;
     this._addInterval    = 0.5;
     this._minAddInterval = 0.015;
     
     this._systemManager = new SystemManager();
-    this._entityManager = new EntityManager({ entitycount : 350 });
+    this._entityManager = new EntityManager({ entitycount : 400 });
     this._entityManager.initWorld();
     
     this._player = this._entityManager.createPlayer(25, 170, 0.0, 0.0, 1.0, 15.0, 15.0);
+    
   };
   
   StageOne.prototype.onEvent = function() {
@@ -22,8 +24,9 @@ define(function(require) {
   };
   
   StageOne.prototype.onLogic = function(delta) {
+    
     this._addTimer += delta;
-      
+    
     if (this._addTimer >= this._addInterval) {
       
       if (this._addInterval > this._minAddInterval) {
@@ -66,4 +69,5 @@ define(function(require) {
   };
   
   return StageOne;
+  
 });

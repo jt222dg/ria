@@ -1,11 +1,11 @@
 define(function(require) {
   
-  var Component = require('ces/component/component');
-  var jasmine   = require('jasmine-html');
+  var Camera  = require('game/camera');
+  var jasmine = require('jasmine-html');
   
   var env = jasmine.getEnv();
   
-  return env.describe("game/component/component", function() {
+  return env.describe("game/camera", function() {
     
     env.beforeEach(function() {
       
@@ -23,15 +23,13 @@ define(function(require) {
       
       env.it('is defined', function() {
         
-        this.spec.expect(Component).toBeDefined();
+
         
       });
       
       env.it('can be instantiated', function() {
         
-        var component = new Component();
-        this.spec.expect(component).toBeDefined();
-        this.spec.expect(component instanceof Component).toBeTruthy();
+        
         
       });
       

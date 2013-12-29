@@ -2,7 +2,7 @@ define(function(require) {
   
   var MovementSystem = require('ces/system/movement-system');
   var EntityManager  = require('ces/entity/entity-manager');
-  var Type           = require('ces/component/type');
+  var Type           = require('ces/component/helpers/type');
   var jasmine        = require('jasmine-html');
   
   var env = jasmine.getEnv();
@@ -55,8 +55,10 @@ define(function(require) {
       
       env.it('_MOVEMENT_MASK is defined with the right value', function() {
       
+        this.spec.expect(this.movementSystem._MOVEMENT_MASK).toBeDefined();
+        
         var mask = this.movementSystem._MOVEMENT_MASK;
-        this.spec.expect(mask & Type.COMPONENT_DISPLACEMENT | Type.COMPONENT_VELOCITY).toBeTruthy();
+        this.spec.expect(mask & Type.DISPLACEMENT | Type.VELOCITY).toBeTruthy();
         
       });
       
@@ -73,8 +75,8 @@ define(function(require) {
         this.player = this.entityManager.createPlayer(1.5, 1.5, 2.0, 3.0, 1.0, 5.0, 5.0);
         this.entity = this.entityManager.createEntity();
         this.entityManager.world.mask[this.entity] = (
-          Type.COMPONENT_DISPLACEMENT |
-          Type.COMPONENT_APPEARANCE
+          Type.DISPLACEMENT |
+          Type.APPEARANCE
         );
         this.entityManager.world.displacement[this.entity].x = 1.0;
         this.entityManager.world.displacement[this.entity].y = 1.0;
@@ -90,7 +92,7 @@ define(function(require) {
         
       });
       
-      env.it('onRun() only affets enteties that has a MOVEMENT_MASK', function() {
+      env.it('onRun() only affects enteties that has a MOVEMENT_MASK', function() {
       
         var startPlayerX = this.entityManager.world.displacement[this.player].x;
         var startPlayerY = this.entityManager.world.displacement[this.player].y;
@@ -106,7 +108,7 @@ define(function(require) {
         
       });
       
-      env.it('onRun() moves enteties a corret distance ', function() {
+      env.it('onRun() moves enteties by the correct distance', function() {
       
         this.spec.expect(this.entityManager.world.displacement[this.player].x).toEqual(1.5);
         this.spec.expect(this.entityManager.world.displacement[this.player].y).toEqual(1.5);

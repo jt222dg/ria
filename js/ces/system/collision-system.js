@@ -1,15 +1,13 @@
 define(function(require) {
   
   // Required modules
-  var System        = require('ces/system/system');
-  var World         = require('ces/entity/world');
-  var Type          = require('ces/component/type');
-  var _             = require('underscore');
-  var $             = require('jquery');
+  var System = require('ces/system/system');
+  var World  = require('ces/entity/world');
+  var Type   = require('ces/component/helpers/type');
+  var _      = require('underscore');
+  var $      = require('jquery');
   
-  // TODO : add physics component as a requirement for the collision system
-  var COLLISION_MASK = Type.COMPONENT_DISPLACEMENT | Type.COMPONENT_APPEARANCE;
-  var VELOCITY_MASK  = Type.COMPONENT_VELOCITY;
+  var COLLISION_MASK = Type.DISPLACEMENT | Type.PHYSICS;
   
   var CollisionSystem = function() {
     this._canvas = $('#canvas').get(0);
@@ -31,7 +29,7 @@ define(function(require) {
         
         d = world.displacement[entity];
         
-        if (d.x < -10) {
+        if (d.x <= -10) {
           entityManager.destroyEntity(entity);
           console.log("destroyed entity");
         }

@@ -32,4 +32,5 @@ define(function(require) {
   };
   
   return Appearance;
+  
 });

@@ -1,7 +1,7 @@
 define(function(require) {
   
   // Required modules
-  var Type         = require('ces/component/type');
+  var Type         = require('ces/component/helpers/type');
   var Displacement = require('ces/component/displacement');
   var Velocity     = require('ces/component/velocity');
   var Appearance   = require('ces/component/appearance');
@@ -27,7 +27,7 @@ define(function(require) {
   
   EntityManager.prototype.createEntity = function() {
     for (var entity = 0; entity < this._ENTITY_COUNT; ++entity) {
-      if (this._world.mask[entity] === Type.COMPONENT_NONE) {
+      if (this._world.mask[entity] === Type.NONE) {
         return entity;
       }
     }
@@ -37,17 +37,17 @@ define(function(require) {
   };
   
   EntityManager.prototype.destroyEntity = function(entity) {
-    this._world.mask[entity] = Type.COMPONENT_NONE;
+    this._world.mask[entity] = Type.NONE;
   };
   
   EntityManager.prototype.createPlayer = function(x, y, vx, vy, mass, w, h) {
     var entity = this.createEntity();
     
     this._world.mask[entity] = (
-      Type.COMPONENT_DISPLACEMENT |
-      Type.COMPONENT_APPEARANCE   |
-      Type.COMPONENT_VELOCITY     |
-      Type.COMPONENT_PHYSICS
+      Type.DISPLACEMENT |
+      Type.APPEARANCE   |
+      Type.VELOCITY     |
+      Type.PHYSICS
     );
     
     if (entity != this._ENTITY_COUNT) {
@@ -74,10 +74,10 @@ define(function(require) {
     var entity = this.createEntity();
     
     this._world.mask[entity] = (
-      Type.COMPONENT_DISPLACEMENT |
-      Type.COMPONENT_APPEARANCE   |
-      Type.COMPONENT_VELOCITY     |
-      Type.COMPONENT_PHYSICS
+      Type.DISPLACEMENT |
+      Type.APPEARANCE   |
+      Type.VELOCITY     |
+      Type.PHYSICS
     );
     
     if (entity != this._ENTITY_COUNT) {

@@ -3,13 +3,13 @@ define(function(require) {
   // Required modules
   var System = require('ces/system/system');
   var World  = require('ces/entity/world');
-  var Type   = require('ces/component/type');
+  var Type   = require('ces/component/helpers/type');
   var _      = require('underscore');
   var $      = require('jquery');
   
   var RenderSystem = function() {
     
-    this._RENDER_MASK = Type.COMPONENT_DISPLACEMENT | Type.COMPONENT_APPEARANCE;
+    this._RENDER_MASK = Type.DISPLACEMENT | Type.APPEARANCE;
     
     this._ctx = undefined;
     var canvas = $('#canvas').get(0);
@@ -47,4 +47,5 @@ define(function(require) {
   };
   
   return RenderSystem;
+  
 });

@@ -3,18 +3,19 @@ define(function(require) {
   // Required modules
   var System = require('ces/system/system');
   var World  = require('ces/entity/world');
-  var Type   = require('ces/component/type');
+  var Type   = require('ces/component/helpers/type');
   var _      = require('underscore');
   
   var MovementSystem = function() {
     
-    this._MOVEMENT_MASK = Type.COMPONENT_DISPLACEMENT | Type.COMPONENT_VELOCITY;
+    this._MOVEMENT_MASK = Type.DISPLACEMENT | Type.VELOCITY;
     
   };
   
   _.extend(MovementSystem, System);
   
   MovementSystem.prototype.onRun = function(entityManager, delta) {
+    
     var world        = entityManager.world;
     var ENTITY_COUNT = entityManager.ENTITY_COUNT;
     
@@ -34,7 +35,9 @@ define(function(require) {
         
       }
     }
+    
   };
   
   return MovementSystem;
+  
 });
