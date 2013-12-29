@@ -8,6 +8,7 @@ define(function(require) {
   var Appearance    = require('ces/component/appearance');
   var Physics       = require('ces/component/physics');
   var Velocity      = require('ces/component/velocity');
+  var Controls      = require('ces/component/controls');
   
   var jasmine       = require('jasmine-html');
   var _             = require('underscore');
@@ -61,6 +62,7 @@ define(function(require) {
         this.spec.expect(entityManager.world.velocity.length).toEqual(0);
         this.spec.expect(entityManager.world.appearance.length).toEqual(0);
         this.spec.expect(entityManager.world.physics.length).toEqual(0);
+        this.spec.expect(entityManager.world.controls.length).toEqual(0);
         
         _.each(entityManager.world.mask, function(mask) {
           this.spec.expect(mask).toBeUndefined();
@@ -75,6 +77,7 @@ define(function(require) {
         this.spec.expect(entityManager.world.velocity.length).toEqual(entityCount);
         this.spec.expect(entityManager.world.appearance.length).toEqual(entityCount);
         this.spec.expect(entityManager.world.physics.length).toEqual(entityCount);
+        this.spec.expect(entityManager.world.controls.length).toEqual(entityCount);
         
         _.each(entityManager.world.mask, function(mask) {
           this.spec.expect(mask).toBeDefined();
@@ -94,6 +97,10 @@ define(function(require) {
         
         _.each(entityManager.world.physics, function(physics) {
           this.spec.expect(physics instanceof Physics).toBeTruthy();
+        }, this);
+        
+        _.each(entityManager.world.controls, function(controls) {
+          this.spec.expect(controls instanceof Controls).toBeTruthy();
         }, this);
         
       });

@@ -26,6 +26,7 @@ define(function(require){
   
   SystemManager.prototype.onLogic = function(entityManager, delta) {
     
+    this._inputSystem.onRun(entityManager);
     this._movementSystem.onRun(entityManager, delta);
     this._collisionSystem.onRun(entityManager);
     

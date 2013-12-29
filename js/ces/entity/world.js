@@ -7,6 +7,7 @@ define(function(require) {
     this._velocity     = [];
     this._appearance   = [];
     this._physics      = [];
+    this._controls     = [];
   };
   
   Object.defineProperty(World.prototype, "mask", {
@@ -32,6 +33,11 @@ define(function(require) {
   Object.defineProperty(World.prototype, "physics", {
     get: function()        { return this._physics; },
     set: function(physics) { }
+  });
+  
+  Object.defineProperty(World.prototype, "controls", {
+    get: function()        { return this._controls; },
+    set: function(controls) { }
   });
   
   return World;

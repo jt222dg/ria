@@ -7,8 +7,7 @@ define(function(require) {
   
   var InputSystem = function() {
     
-    this._INPUT_MASK   = Type.INPUT;
-    this._CONTROL_MASK = Type.INPUT | Type.DISPLACEMENT;
+    this._CONTROL_MASK = Type.CONTROLS | Type.DISPLACEMENT;
     
     this._keys = {
       W : false,
@@ -21,34 +20,11 @@ define(function(require) {
   
   _.extend(InputSystem, System);
   
-  InputSystem.prototype.onKeyDown = function(event) {
-    
-    switch (event.keyCode) {
-      case 87: this._Keys.W = true; break;
-      case 65: this._Keys.A = true; break;
-      case 83: this._Keys.S = true; break;
-      case 68: this._Keys.D = true; break;
-      default: break;
-    }
-    
-  };
-  
-  InputSystem.prototype.onKeyUp = function(event) {
-    
-    switch (event.keyCode) {
-      case 87: this._Keys.W = false; break;
-      case 65: this._Keys.A = false; break;
-      case 83: this._Keys.S = false; break;
-      case 68: this._Keys.D = false; break;
-      default: break;
-    }
-    
-  };
-  
   InputSystem.prototype.onInit = function() {
     
-    window.addEventListener('keydown', this.onKeyDown, false);
-    window.addEventListener('keyup',   this.onKeyUp,   false);
+    var self = this;
+    window.addEventListener('keydown', function(event) { self.onKeyDown(event) }, false);
+    window.addEventListener('keyup',   function(event) { self.onKeyUp(event)   }, false);
     
   };
   
@@ -62,8 +38,11 @@ define(function(require) {
     for (var entity = 0; entity < ENTITY_COUNT; ++entity) {
       if ((world.mask[entity] & this._CONTROL_MASK) === this._CONTROL_MASK) {
         
-        // TODO: implement input component in world and here as well as in tests
-        // and change its name to control component
+        var m = world.controls[entity].actions.MOVING;
+        m.UP    = this._keys.W;
+        m.LEFT  = this._keys.A;
+        m.DOWN  = this._keys.S;
+        m.RIGHT = this._keys.D;
         
       }
     }
@@ -74,6 +53,30 @@ define(function(require) {
     
     window.removeEventListener('keydown', this.onKeyDown, false);
     window.removeEventListener('keyup',   this.onKeyUp,   false);
+    
+  };
+  
+  InputSystem.prototype.onKeyDown = function(event) {
+    
+    switch (event.keyCode) {
+      case 87: this._keys.W = true; break;
+      case 65: this._keys.A = true; break;
+      case 83: this._keys.S = true; break;
+      case 68: this._keys.D = true; break;
+      default: break;
+    }
+    
+  };
+  
+  InputSystem.prototype.onKeyUp = function(event) {
+    
+    switch (event.keyCode) {
+      case 87: this._keys.W = false; break;
+      case 65: this._keys.A = false; break;
+      case 83: this._keys.S = false; break;
+      case 68: this._keys.D = false; break;
+      default: break;
+    }
     
   };
   

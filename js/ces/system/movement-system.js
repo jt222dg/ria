@@ -8,7 +8,8 @@ define(function(require) {
   
   var MovementSystem = function() {
     
-    this._MOVEMENT_MASK = Type.DISPLACEMENT | Type.VELOCITY;
+    this._MOVEMENT_MASK        = Type.DISPLACEMENT   | Type.VELOCITY;
+    this._PLAYER_CONTROLS_MASK = this._MOVEMENT_MASK | Type.CONTROLS;
     
   };
   
@@ -23,8 +24,29 @@ define(function(require) {
     
     var v;
     var d;
+    var m;
     
     for (var entity = 0; entity < ENTITY_COUNT; ++entity) {
+      
+      if ((world.mask[entity] & this._PLAYER_CONTROLS_MASK) === this._PLAYER_CONTROLS_MASK) {
+        
+        m = world.controls[entity].actions.MOVING;
+        v = world.velocity[entity];
+        
+        var velX = 0;
+        var velY = 0;
+        
+        velY += m.UP   ? -150 : 0;
+        velY += m.DOWN ?  150 : 0;
+        
+        velX += m.LEFT  ? -150 : 0;
+        velX += m.RIGHT ?  150 : 0;
+        
+        v.x = velX;
+        v.y = velY;
+        
+      }
+      
       if ((world.mask[entity] & this._MOVEMENT_MASK) === this._MOVEMENT_MASK) {
         
         v = world.velocity[entity];
@@ -34,6 +56,7 @@ define(function(require) {
         d.y += v.y * delta;
         
       }
+      
     }
     
   };

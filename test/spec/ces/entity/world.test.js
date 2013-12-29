@@ -86,6 +86,13 @@ define(function(require) {
         
       });
       
+      env.it('_input is defined and is an empty array', function() {
+      
+        this.spec.expect(this.world._controls).toBeDefined();
+        this.spec.expect(this.world._controls instanceof Array).toBeTruthy();
+        
+      });
+      
     });
     
     env.describe('using properties', function() {
@@ -140,6 +147,15 @@ define(function(require) {
           
         });
         
+        env.it('can\'t set _controls using controls', function() {
+          
+          this.world._controls = undefined;
+          this.spec.expect(this.world._controls).toBeUndefined();
+          this.world.controls = [];
+          this.spec.expect(this.world._controls).toBeUndefined();
+          
+        });
+        
         env.it('can\'t set _physics using physics', function() {
           
           this.world._physics = undefined;
@@ -181,6 +197,13 @@ define(function(require) {
           
           this.world._physics = [14, 3, -8];
           this.spec.expect(this.world.physics).toEqual([14, 3, -8]);
+          
+        });
+        
+        env.it('can get _controls using controls', function() {
+          
+          this.world._controls = [14, 3, -8];
+          this.spec.expect(this.world.controls).toEqual([14, 3, -8]);
           
         });
         

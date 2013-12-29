@@ -5,9 +5,12 @@ define(function(require) {
   var _         = require('underscore');
   
   var Physics = function() {
-    this._mass = 0.0;
-    this._w    = 0.0;
-    this._h    = 0.0;
+    
+    this._mass  = 0.0;
+    this._w     = 0.0;
+    this._h     = 0.0;
+    this._alive = true;
+    
   };
   
   _.extend(Physics.prototype, Component.prototype);
@@ -28,4 +31,5 @@ define(function(require) {
   });
   
   return Physics;
+  
 });

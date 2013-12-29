@@ -72,7 +72,8 @@ define(function(require) {
         
         this.entityManager = new EntityManager();
         this.entityManager.initWorld();
-        this.player = this.entityManager.createPlayer(1.5, 1.5, 2.0, 3.0, 1.0, 5.0, 5.0);
+        
+        this.box = this.entityManager.createBox(1.5, 1.5, 2.0, 3.0, 1.0, 5.0, 5.0);
         this.entity = this.entityManager.createEntity();
         this.entityManager.world.mask[this.entity] = (
           Type.DISPLACEMENT |
@@ -93,16 +94,16 @@ define(function(require) {
       });
       
       env.it('onRun() only affects enteties that has a MOVEMENT_MASK', function() {
-      
-        var startPlayerX = this.entityManager.world.displacement[this.player].x;
-        var startPlayerY = this.entityManager.world.displacement[this.player].y;
+        
+        var startBoxX = this.entityManager.world.displacement[this.box].x;
+        var startBoxY = this.entityManager.world.displacement[this.box].y;
         var startEntityX = this.entityManager.world.displacement[this.entity].x;
         var startEntityY = this.entityManager.world.displacement[this.entity].y;
         
         this.movementSystem.onRun(this.entityManager, this.delta);
         
-        this.spec.expect(this.entityManager.world.displacement[this.player].x).not.toEqual(startPlayerX);
-        this.spec.expect(this.entityManager.world.displacement[this.player].y).not.toEqual(startPlayerY);
+        this.spec.expect(this.entityManager.world.displacement[this.box].x).not.toEqual(startBoxX);
+        this.spec.expect(this.entityManager.world.displacement[this.box].y).not.toEqual(startBoxY);
         this.spec.expect(this.entityManager.world.displacement[this.entity].x).toEqual(startEntityX);
         this.spec.expect(this.entityManager.world.displacement[this.entity].y).toEqual(startEntityY);
         
@@ -110,13 +111,13 @@ define(function(require) {
       
       env.it('onRun() moves enteties by the correct distance', function() {
       
-        this.spec.expect(this.entityManager.world.displacement[this.player].x).toEqual(1.5);
-        this.spec.expect(this.entityManager.world.displacement[this.player].y).toEqual(1.5);
+        this.spec.expect(this.entityManager.world.displacement[this.box].x).toEqual(1.5);
+        this.spec.expect(this.entityManager.world.displacement[this.box].y).toEqual(1.5);
         
         this.movementSystem.onRun(this.entityManager, this.delta);
         
-        this.spec.expect(this.entityManager.world.displacement[this.player].x).toEqual(1.532);
-        this.spec.expect(this.entityManager.world.displacement[this.player].y).toEqual(1.548);
+        this.spec.expect(this.entityManager.world.displacement[this.box].x).toEqual(1.532);
+        this.spec.expect(this.entityManager.world.displacement[this.box].y).toEqual(1.548);
         
       });
       

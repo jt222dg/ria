@@ -4,7 +4,7 @@ define(function(require) {
   var Component = require('ces/component/component');
   var _         = require('underscore');
   
-  var Input = function() {
+  var Controls = function() {
     
     this._actions = {
       MOVING : {
@@ -17,13 +17,13 @@ define(function(require) {
     
   };
   
-  _.extend(Input.prototype, Component.prototype);
+  _.extend(Controls.prototype, Component.prototype);
   
-  Object.defineProperty(Input.prototype, 'actions', {
+  Object.defineProperty(Controls.prototype, 'actions', {
     get : function()         { return this._actions },
     set : function (actions) { /* Empty stub */  }
   });
   
-  return Input;
+  return Controls;
   
 });

@@ -8,15 +8,19 @@ define(function(require) {
   var StageOne = function() {
     
     this._addTimer       = 0.0;
-    this._addInterval    = 0.5;
-    this._minAddInterval = 0.015;
+    this._addInterval    = 0.2;
+    this._minAddInterval = 0.025;
     
     this._systemManager = new SystemManager();
-    this._entityManager = new EntityManager({ entitycount : 400 });
+    this._entityManager = new EntityManager({ entitycount : 300 });
     this._entityManager.initWorld();
     
     this._player = this._entityManager.createPlayer(25, 170, 0.0, 0.0, 1.0, 15.0, 15.0);
     
+  };
+  
+  StageOne.prototype.onInit = function() {
+    this._systemManager.onInit();
   };
   
   StageOne.prototype.onEvent = function() {
@@ -33,7 +37,7 @@ define(function(require) {
         this._addInterval -= 0.002;
       }
       
-      var maxPosY = 340;
+      var maxPosY = 360;
       var posY = Math.floor(Math.random() * maxPosY+1);
       
       var maxVelX = -120;

@@ -6,6 +6,7 @@ define(function(require) {
   var Velocity     = require('ces/component/velocity');
   var Appearance   = require('ces/component/appearance');
   var Physics      = require('ces/component/physics');
+  var Controls     = require('ces/component/controls');
   var World        = require('ces/entity/world');
   
   var EntityManager = function(options) {
@@ -22,6 +23,7 @@ define(function(require) {
       this._world.velocity[i]     = new Velocity();
       this._world.appearance[i]   = new Appearance();
       this._world.physics[i]      = new Physics();
+      this._world.controls[i]     = new Controls();
     }
   };
   
@@ -47,7 +49,8 @@ define(function(require) {
       Type.DISPLACEMENT |
       Type.APPEARANCE   |
       Type.VELOCITY     |
-      Type.PHYSICS
+      Type.PHYSICS      |
+      Type.CONTROLS
     );
     
     if (entity != this._ENTITY_COUNT) {
@@ -64,6 +67,8 @@ define(function(require) {
       this._world.appearance[entity].color.r = 255;
       this._world.appearance[entity].color.g = 0;
       this._world.appearance[entity].color.b = 0;
+      
+      this._world.controls[entity] = new Controls();
     }
     
     return entity;

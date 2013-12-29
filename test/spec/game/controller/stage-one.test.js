@@ -8,7 +8,7 @@ define(function(require) {
   
   var env = jasmine.getEnv();
   
-  return env.describe("game/stage-one", function() {
+  return env.describe("game/controller/stage-one", function() {
     
     env.beforeEach(function() {
       
@@ -61,17 +61,17 @@ define(function(require) {
         
       });
       
-      env.it('_addTimer is defined and is set to 0.0', function() {
+      env.it('_addInterval is defined and is set to 0.2', function() {
         
         this.spec.expect(this.stageOne._addInterval).toBeDefined();
-        this.spec.expect(this.stageOne._addInterval).toEqual(0.5);
+        this.spec.expect(this.stageOne._addInterval).toEqual(0.2);
         
       });
       
-      env.it('_addTimer is defined and is set to 0.0', function() {
+      env.it('_minAddInterval is defined and is set to 0.025', function() {
         
         this.spec.expect(this.stageOne._minAddInterval).toBeDefined();
-        this.spec.expect(this.stageOne._minAddInterval).toEqual(0.015);
+        this.spec.expect(this.stageOne._minAddInterval).toEqual(0.025);
         
       });
       

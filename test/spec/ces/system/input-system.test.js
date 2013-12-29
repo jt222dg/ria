@@ -52,14 +52,14 @@ define(function(require) {
         
       });
       
-      env.it('_INPUT_MASK is defined with the right values', function() {
+      env.it('_CONTROL_MASK is defined with the right values', function() {
         
-        this.spec.expect(this.inputSystem._INPUT_MASK).toBeDefined();
+        this.spec.expect(this.inputSystem._CONTROL_MASK).toBeDefined();
         
-        var testMask  = Type.INPUT | Type.PHYSICS | Type.displacement | Type.VELOCITY;
-        var inputMask = this.inputSystem._INPUT_MASK;
+        var testMask    = Type.CONTROLS | Type.PHYSICS | Type.DISPLACEMENT | Type.VELOCITY;
+        var controlMaks = this.inputSystem._CONTROL_MASK;
         
-        this.spec.expect((testMask & inputMask) === inputMask).toBeTruthy();
+        this.spec.expect((testMask & controlMaks) === controlMaks).toBeTruthy();
         
       });
       

@@ -100,14 +100,26 @@ define(function(require) {
         
       });
       
-      env.it('onLogic() calls _movementSystem.onRun() and _collisionSystem.onRun()', function() {
+      env.it('onInit() calls _inputSystem.onInit()', function() {
+        
+        this.spec.spyOn(this.systemManager._inputSystem, 'onInit');
+        
+        this.systemManager.onInit();
+        
+        this.spec.expect(this.systemManager._inputSystem.onInit).toHaveBeenCalled();
+        
+      });
+      
+      env.it('onLogic() calls _movementSystem.onRun(), _inputSystem.onRun() and _collisionSystem.onRun()', function() {
         
         this.spec.spyOn(this.systemManager._movementSystem, 'onRun');
+        this.spec.spyOn(this.systemManager._inputSystem, 'onRun');
         this.spec.spyOn(this.systemManager._collisionSystem, 'onRun');
         
         this.systemManager.onLogic();
         
         this.spec.expect(this.systemManager._movementSystem.onRun).toHaveBeenCalled();
+        this.spec.expect(this.systemManager._inputSystem.onRun).toHaveBeenCalled();
         this.spec.expect(this.systemManager._collisionSystem.onRun).toHaveBeenCalled();
         
       });

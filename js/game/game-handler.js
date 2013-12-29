@@ -17,6 +17,7 @@ define(function(require) {
     this._canvasHandler = new CanvasHandler();
     this._eventHandler  = new EventHandler();
     this._game          = new StageOne();
+    this._game.onInit();
     
   };
   

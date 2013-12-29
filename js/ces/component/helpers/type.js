@@ -5,6 +5,6 @@ define(function(require) {
     VELOCITY     : 1 << 1,
     APPEARANCE   : 1 << 2,
     PHYSICS      : 1 << 3,
-    INPUT        : 1 << 4
+    CONTROLS     : 1 << 4
   };
 });
