@@ -36,15 +36,13 @@ define(function(require) {
         var velX = 0;
         var velY = 0;
         
-        velY += m.UP   ? -150 : 0;
-        velY += m.DOWN ?  150 : 0;
-        
-        velX += m.LEFT  ? -150 : 0;
-        velX += m.RIGHT ?  150 : 0;
+        velY += m.UP    ? -120 : 0;
+        velY += m.DOWN  ?  120 : 0;
+        velX += m.LEFT  ? -120 : 0;
+        velX += m.RIGHT ?  120 : 0;
         
         v.x = velX;
         v.y = velY;
-        
       }
       
       if ((world.mask[entity] & this._MOVEMENT_MASK) === this._MOVEMENT_MASK) {

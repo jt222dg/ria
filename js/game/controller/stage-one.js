@@ -2,25 +2,38 @@ define(function(require) {
   
   // Required modules
   var _             = require('underscore');
+  var $             = require('jquery');
   var EntityManager = require('ces/entity/entity-manager');
   var SystemManager = require('ces/system/system-manager');
   
   var StageOne = function() {
     
-    this._addTimer       = 0.0;
-    this._addInterval    = 0.2;
-    this._minAddInterval = 0.025;
-    
     this._systemManager = new SystemManager();
     this._entityManager = new EntityManager({ entitycount : 300 });
+    
+    this._scoreboard = $('#scoreboard');
+    
+    this.onInit();
+  };
+  
+  StageOne.prototype.onInit = function() {
+    
+    this._addTimer         = 0.0;
+    this._addInterval      = 0.2;
+    this._minAddInterval   = 0.025;
+    
+    this._score            = 0;
+    this._scoreTimer       = 0.0;
+    this._addScoreInterval = 0.1;
+    
+    this._isOver           = false;
+    
     this._entityManager.initWorld();
     
     this._player = this._entityManager.createPlayer(25, 170, 0.0, 0.0, 1.0, 15.0, 15.0);
     
-  };
-  
-  StageOne.prototype.onInit = function() {
     this._systemManager.onInit();
+    
   };
   
   StageOne.prototype.onEvent = function() {
@@ -57,7 +70,22 @@ define(function(require) {
       this._addTimer = 0.0;
     }
     
+    this._scoreTimer += delta;
+    if (this._scoreTimer >= this._addScoreInterval) {
+      this._score += 1;
+      this._scoreTimer = 0.0;
+      
+      if (this._scoreboard) {
+        this._scoreboard.html(this._score.toString());
+      }
+      
+    }
+    
     this._systemManager.onLogic(this._entityManager, delta);
+    
+    if (this._entityManager.world.physics[this._player].isDead) {
+      this._isOver = true;
+    }
   };
   
   StageOne.prototype.onRender = function(delta) {
@@ -69,8 +97,16 @@ define(function(require) {
   };
   
   StageOne.prototype.restart = function() {
+    
     this._entityManager.initWorld();
+    this.onInit();
+    
   };
+  
+  Object.defineProperty(StageOne.prototype, 'isOver', {
+    get : function()   { return this._isOver; },
+    set : function(iO) { /* METHOD STUB */        }
+  });
   
   return StageOne;
   

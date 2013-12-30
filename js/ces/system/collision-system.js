@@ -45,17 +45,17 @@ define(function(require) {
               var eP = world.physics[enemy];
               
               var a = {
-                x : d.x,
-                y : d.y,
-                w : p.w,
-                h : p.h
+                x : d.x+2,
+                y : d.y+2,
+                w : p.w-4,
+                h : p.h-4
               };
               
               var b = {
-                x : eD.x,
-                y : eD.y,
-                w : eP.w,
-                h : eP.h
+                x : eD.x+2,
+                y : eD.y+2,
+                w : eP.w-4,
+                h : eP.h-4
               };
               
               // If collided according to simple AABB collision detection
@@ -63,7 +63,7 @@ define(function(require) {
                 (a.x + a.w > b.x && a.x < b.x + b.w) &&
                 (a.y + a.h > b.y && a.y < b.y + b.h)
               ) {
-                console.log("collided");
+                p.isDead = true;
               }
               
             }

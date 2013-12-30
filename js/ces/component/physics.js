@@ -6,10 +6,10 @@ define(function(require) {
   
   var Physics = function() {
     
-    this._mass  = 0.0;
-    this._w     = 0.0;
-    this._h     = 0.0;
-    this._alive = true;
+    this._mass   = 0.0;
+    this._w      = 0.0;
+    this._h      = 0.0;
+    this._isDead = false;
     
   };
   
@@ -28,6 +28,11 @@ define(function(require) {
   Object.defineProperty(Physics.prototype, "h", {
     get: function()  { return this._h; },
     set: function(h) { this._h = h; }
+  });
+  
+  Object.defineProperty(Physics.prototype, "isDead", {
+    get: function()       { return this._isDead; },
+    set: function(isDead) { this._isDead = isDead; }
   });
   
   return Physics;

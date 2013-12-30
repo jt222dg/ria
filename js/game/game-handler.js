@@ -59,20 +59,27 @@ define(function(require) {
         
         if (that._eventHandler.getKeys().N) {
           that._game.restart();
-          that._eventHandler.getKeys().N = !this._eventHandler.getKeys().N;
+          that._eventHandler.getKeys().N = !that._eventHandler.getKeys().N;
         }
         
         that._canvasHandler.clearScreen();
         that._game.onRender(delta);
-      }
+        
+        if (that._game.isOver) {
+          that.stopGame();
+        }
       
+      }
+          
     })();
   };
   
   GameHandler.prototype.stopGame = function() {
-    Raf.clearRequestInterval.call(window, this._requestId);
+    
     this._running = false;
+    Raf.clearRequestInterval.call(window, this._requestId);
     this.onCleanUp();
+    
   };
   
   return GameHandler;
