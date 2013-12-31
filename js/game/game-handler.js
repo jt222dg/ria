@@ -18,7 +18,6 @@ define(function(require) {
     this._eventHandler  = new EventHandler();
     this._game          = new StageOne();
     this._game.onInit();
-    
   };
   
   GameHandler.prototype.onCleanUp = function() {
@@ -78,6 +77,7 @@ define(function(require) {
   GameHandler.prototype.showMenuScreen = function() {
     
     this._canvasHandler.grayScreen();
+    $('#menuscreen').show();
     
   };
   

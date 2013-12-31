@@ -22,13 +22,19 @@ define(function(require) {
     
     manageGame : function(currentPage) {
       if (this.lastPage === PageType.GAME) {
-        console.log("stop game");
         this.gameHandler.stopGame();
       }
       
       if (currentPage === PageType.GAME) {
+        
+        this.gameHandler.onInit();
+        this.gameHandler.showMenuScreen();
+        
         var that = this;
-        setTimeout(function() { that.gameHandler.startGame() },500);
+        $('#start-game-button').click(function() {
+          $('#menuscreen').hide();
+          that.gameHandler.startGame();
+        });
       }
       
       this.lastPage = currentPage;
