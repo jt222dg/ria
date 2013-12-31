@@ -78,6 +78,7 @@ define(function(require) {
       if (el === undefined || template === undefined) return null;
       
       var NavView = GenericView.extend({
+
         render : function() {
           GenericView.prototype.render.call(this);
           
@@ -141,6 +142,26 @@ define(function(require) {
       
       return new ScoresView({ el : el, template : template, model : model });
       
+    },
+    
+    getGameView : function(options) {
+      
+      if (options === undefined) return null;
+      var el       = options.el;
+      var template = options.template;
+      var model    = options.model;
+      
+      if (el === undefined || template === undefined) return null;
+      
+      var GameView = GenericView.extend({
+        initScoreboard : function() {
+          $('.jumbotron').append("<div id='scoreboard'></div>");
+        }
+      });
+      
+      return new GameView({ el : el, template : template, model : model });
+        
     }
+    
   };
 });

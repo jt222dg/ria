@@ -39,30 +39,40 @@ define(function(require) {
   }
   
   return Backbone.View.extend({
-    needsToUpdateMain : true,
+    needsToUpdateContent : true,
+    needsToUpdateNav     : true,
+    needsToUpdateFooter  : true,
     
     initialize : function() {
     },
     
     renderMain : function() {
-      if (this.needsToUpdateMain) {
+      if (this.needsToUpdateContent) {
         
         ViewFactory.changeView(ViewType.CONTENT, ViewFactory.getGenericView({
           el       : elements.content,
           template : templates.content
         }));
         
+        this.needsToUpdateContent = !this.needsToUpdateContent;
+      }
+      
+      if (this.needsToUpdateNav) {
         ViewFactory.changeView(ViewType.NAV, ViewFactory.getNavView({
           el       : elements.nav,
           template : templates.nav
         }));
         
+        this.needsToUpdateNav = !this.needsToUpdateNav;
+      }
+      
+      if (this.needsToUpdateFooter) {
         ViewFactory.changeView(ViewType.FOOTER, ViewFactory.getGenericView({
           el       : elements.footer,
           template : templates.footer
         }));
         
-        this.needsToUpdateMain = !this.needsToUpdateMain;
+        this.needsToUpdateFooter = !this.needsToUpdateFooter;
       }
     },
     
@@ -88,7 +98,16 @@ define(function(require) {
         options.model = this.initScores();
       }
       
-      var view = pagetype === PageType.SCORES ? ViewFactory.getScoresView(options) : ViewFactory.getGenericView(options);
+      var view = (
+        pagetype === PageType.SCORES ? ViewFactory.getScoresView(options) :
+        pagetype === PageType.GAME   ? ViewFactory.getGameView(options)   :
+        ViewFactory.getGenericView(options)
+      );
+      
+      if (pagetype === PageType.GAME) {
+        view.initScoreboard();
+        this.needsToUpdateContent = true;
+      }
       
       ViewFactory.changeView(ViewType.SUBCONTENT, view);
     },

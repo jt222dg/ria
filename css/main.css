@@ -106,6 +106,7 @@ a, a:focus, a:active, li, li:focus, li:active {
 
 #scoreboard {
   margin:0 auto;
+  text-align:center;
   border:1px solid black;
   height:50px;
   width:100px;

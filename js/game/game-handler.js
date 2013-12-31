@@ -66,12 +66,19 @@ define(function(require) {
         that._game.onRender(delta);
         
         if (that._game.isOver) {
+          that.showMenuScreen();
           that.stopGame();
         }
       
       }
           
     })();
+  };
+  
+  GameHandler.prototype.showMenuScreen = function() {
+    
+    this._canvasHandler.grayScreen();
+    
   };
   
   GameHandler.prototype.stopGame = function() {

@@ -8,12 +8,10 @@ define(function(require) {
   
   var StageOne = function() {
     
-    this._systemManager = new SystemManager();
-    this._entityManager = new EntityManager({ entitycount : 300 });
-    
     this._scoreboard = $('#scoreboard');
     
     this.onInit();
+    
   };
   
   StageOne.prototype.onInit = function() {
@@ -28,10 +26,12 @@ define(function(require) {
     
     this._isOver           = false;
     
+    this._entityManager = new EntityManager({ entitycount : 300 });
     this._entityManager.initWorld();
     
     this._player = this._entityManager.createPlayer(25, 170, 0.0, 0.0, 1.0, 15.0, 15.0);
     
+    this._systemManager = new SystemManager();
     this._systemManager.onInit();
     
   };
@@ -42,6 +42,7 @@ define(function(require) {
   
   StageOne.prototype.onLogic = function(delta) {
     
+    console.log(delta);
     this._addTimer += delta;
     
     if (this._addTimer >= this._addInterval) {
@@ -93,19 +94,21 @@ define(function(require) {
   };
   
   StageOne.prototype.onCleanUp = function() {
-    // Empty stub
+    this._systemManager = undefined;
+    this._entityManager = undefined;
   };
   
   StageOne.prototype.restart = function() {
     
-    this._entityManager.initWorld();
+    //this._entityManager.initWorld();
+    this.onCleanUp();
     this.onInit();
     
   };
   
   Object.defineProperty(StageOne.prototype, 'isOver', {
     get : function()   { return this._isOver; },
-    set : function(iO) { /* METHOD STUB */        }
+    set : function(iO) { /* METHOD STUB */    }
   });
   
   return StageOne;

@@ -21,6 +21,19 @@ define(function(require) {
     }
   };
   
+  CanvasHandler.prototype.grayScreen = function() {
+    if (this.ctx !== undefined) {
+      this.ctx.save();
+      
+      // Use identity matrix to fill the screen
+      this.ctx.setTransform(1,0,0,1,0,0);
+      this.ctx.fillStyle = "rgba(150,150,150,0.75)";
+      this.ctx.fillRect(0, 0, this.canvas.width, this.canvas.height);
+      
+      this.ctx.restore();
+    }
+  };
+  
   CanvasHandler.prototype.clearScreen = function() {
     if (this.ctx !== undefined) {
       this.ctx.save();
