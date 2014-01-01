@@ -100,7 +100,6 @@ define(function(require) {
   
   StageOne.prototype.restart = function() {
     
-    //this._entityManager.initWorld();
     this.onCleanUp();
     this.onInit();
     

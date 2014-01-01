@@ -31,8 +31,8 @@ define(function(require) {
         this.gameHandler.showMenuScreen();
         
         var that = this;
+        
         $('#start-game-button').click(function() {
-          $('#menuscreen').hide();
           that.gameHandler.startGame();
         });
       }
