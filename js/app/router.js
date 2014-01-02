@@ -35,8 +35,11 @@ define(function(require) {
         var that = this;
         
         $('#start-game-button').click(function() {
-          $('#start-game-button').attr('disabled', 'disabled');
-          that.gameHandler.startGame();
+          if ($('#name').val() !== "") {
+            $('#start-game-button').attr('disabled', 'disabled');
+            $('#name').attr('disabled', 'disabled');
+            that.gameHandler.startGame();
+          }
         });
       }
       

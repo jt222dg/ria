@@ -115,35 +115,6 @@ define(function(require) {
     initScores : function() {
       var scores = new Scores([], { storage : "scores" });
       scores.fetch();
-      /*
-      var model = scores.first();
-      while (model) {
-        model.destroy();
-        model = scores.first();
-      }
-      
-      if (scores.findWhere({ name : "Jesper"}) === undefined) {
-        scores.add(new Score({ name : "Jesper", amount : 5000 }));
-      }
-      
-      if (scores.findWhere({ name : "Mya"}) === undefined) {
-        scores.add(new Score({ name : "Mya", amount : 20000 }));
-      }
-      
-      if (scores.findWhere({ name : "Luffy"}) === undefined) {
-        scores.add(new Score({ name : "Luffy", amount : 10000 }));
-      }
-      
-      if (scores.findWhere({ name : "Lucy"}) === undefined) {
-        scores.add(new Score({ name : "Lucy", amount : 7500 }));
-      }
-      
-      if (scores.findWhere({ name : "Reyna"}) === undefined) {
-        scores.add(new Score({ name : "Reyna", amount : 13 }));
-      }
-      
-      scores.save();
-      */
       return scores;
     }
   });

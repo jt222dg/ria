@@ -106,8 +106,17 @@ a, a:focus, a:active, li, li:focus, li:active {
 
 #scoreboard {
   margin:0 auto;
+  margin-bottom:20px;
   text-align:center;
   border:1px solid black;
   height:50px;
   width:100px;
+}
+
+#start-game-button {
+  margin-bottom:20px;
+}
+
+#name {
+  text-align:center;
 }

@@ -155,8 +155,10 @@ define(function(require) {
       
       var GameView = GenericView.extend({
         initScoreboard : function() {
+          $('.jumbotron').empty();
           $('.jumbotron').append("<div id='scoreboard'></div>");
           $('.jumbotron').append("<input type='button' class='btn btn-primary btn-lg' id='start-game-button' value='new game' />");
+          $('.jumbotron').append("<div><input type='text' id='name' value ='' placeholder='name...' /></div>");
         }
       });
       

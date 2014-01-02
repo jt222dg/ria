@@ -88,6 +88,7 @@ define(function(require) {
   
   GameHandler.prototype.saveScore = function() {
     
+    var name      = $('#name').val();
     var lastScore = this._game.score;
     
     var scores = new Scores([], { storage : "scores" });
@@ -104,7 +105,7 @@ define(function(require) {
     }
     
     if (scores.length < 5) {
-      scores.add(new Score({ name : "Jesper", amount : lastScore }));
+      scores.add(new Score({ name : name, amount : lastScore }));
       scores.save();
     }
     
