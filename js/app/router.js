@@ -38,7 +38,10 @@ define(function(require) {
           if ($('#name').val() !== "") {
             $('#start-game-button').attr('disabled', 'disabled');
             $('#name').attr('disabled', 'disabled');
+            $('#name').removeClass('red-border');
             that.gameHandler.startGame();
+          } else {
+            $('#name').addClass('red-border');
           }
         });
       }

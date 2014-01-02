@@ -120,3 +120,7 @@ a, a:focus, a:active, li, li:focus, li:active {
 #name {
   text-align:center;
 }
+
+.red-border {
+  border:2px solid red;
+}

@@ -45,8 +45,8 @@ define(function(require) {
         a = world.appearance[entity];
         
         if (
-          d.x > 0 && d.x < this._width &&
-          d.y > 0 && d.y < this._height
+          d.x >= 0 && d.x <= this._width &&
+          d.y >= 0 && d.y <= this._height
         ) {
           this._ctx.fillStyle = a.toString();
           this._ctx.fillRect(d.x, d.y, 10.0, 10.0);
