@@ -22,7 +22,9 @@ define(function(require) {
     
     manageGame : function(currentPage) {
       if (this.lastPage === PageType.GAME) {
-        this.gameHandler.stopGame();
+        if (this.gameHandler.isRunning()) {
+          this.gameHandler.stopGame();
+        }
       }
       
       if (currentPage === PageType.GAME) {

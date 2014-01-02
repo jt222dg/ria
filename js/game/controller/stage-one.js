@@ -93,8 +93,10 @@ define(function(require) {
   };
   
   StageOne.prototype.onCleanUp = function() {
+    
     this._systemManager = undefined;
     this._entityManager = undefined;
+    
   };
   
   StageOne.prototype.restart = function() {
@@ -103,6 +105,11 @@ define(function(require) {
     this.onInit();
     
   };
+  
+  Object.defineProperty(StageOne.prototype, 'score', {
+    get : function()  { return this._score; },
+    set : function(s) { /* METHOD STUB */    }
+  });
   
   Object.defineProperty(StageOne.prototype, 'isOver', {
     get : function()   { return this._isOver; },

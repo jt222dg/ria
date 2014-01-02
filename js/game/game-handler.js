@@ -6,6 +6,8 @@ define(function(require) {
   var EventHandler  = require('game/event-handler');
   var StageOne      = require('game/controller/stage-one');
   var $             = require('jquery');
+  var Scores        = require('collection/scores');
+  var Score         = require('model/score');
   
   var GameHandler = function() {
   };
@@ -67,6 +69,7 @@ define(function(require) {
         
         if (that._game.isOver) {
           that.showMenuScreen();
+          that.saveScore();
           that.stopGame();
         }
       
@@ -83,6 +86,30 @@ define(function(require) {
     
   };
   
+  GameHandler.prototype.saveScore = function() {
+    
+    var lastScore = this._game.score;
+    
+    var scores = new Scores([], { storage : "scores" });
+    scores.fetch();
+    
+    if (scores.length >= 5) {
+      var minScore = scores.min(function(score) {
+        return score.get("amount");
+      });
+      
+      if (minScore.get("amount") < lastScore) {
+        minScore.destroy();
+      }
+    }
+    
+    if (scores.length < 5) {
+      scores.add(new Score({ name : "Jesper", amount : lastScore }));
+      scores.save();
+    }
+    
+  };
+  
   GameHandler.prototype.stopGame = function() {
     
     this._running = false;
@@ -90,6 +117,15 @@ define(function(require) {
     this.onCleanUp();
     
   };
+  
+  GameHandler.prototype.isRunning = function() {
+    return this._running;
+  };
+  
+  Object.defineProperty(GameHandler.prototype, 'lastScore', {
+    get : function()   { return this._lastScore; },
+    set : function(ls) { this._lastScore = ls;   }
+  });
   
   return GameHandler;
   

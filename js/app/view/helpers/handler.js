@@ -115,7 +115,7 @@ define(function(require) {
     initScores : function() {
       var scores = new Scores([], { storage : "scores" });
       scores.fetch();
-      
+      /*
       var model = scores.first();
       while (model) {
         model.destroy();
@@ -143,7 +143,7 @@ define(function(require) {
       }
       
       scores.save();
-      
+      */
       return scores;
     }
   });
