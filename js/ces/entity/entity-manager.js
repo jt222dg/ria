@@ -34,7 +34,7 @@ define(function(require) {
       }
     }
     
-    console.log("ERROR: No more entities left.");
+    //console.log("ERROR: No more entities left.");
     return this._ENTITY_COUNT;
   };
   

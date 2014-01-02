@@ -5,6 +5,7 @@ define(function(require) {
   var CanvasHandler = require('game/canvas-handler');
   var EventHandler  = require('game/event-handler');
   var StageOne      = require('game/controller/stage-one');
+  var $             = require('jquery');
   
   var GameHandler = function() {
   };
@@ -18,7 +19,6 @@ define(function(require) {
     this._eventHandler  = new EventHandler();
     this._game          = new StageOne();
     this._game.onInit();
-    
   };
   
   GameHandler.prototype.onCleanUp = function() {
@@ -52,7 +52,7 @@ define(function(require) {
         delta     = (startTime - endTime) / 1000;
         delta     = delta < 0.016 ? delta : 0.016;
         endTime   = startTime;
-  
+        
         if (!that._eventHandler.getKeys().P) {
           that._game.onLogic(delta);
         }
@@ -78,6 +78,7 @@ define(function(require) {
   GameHandler.prototype.showMenuScreen = function() {
     
     this._canvasHandler.grayScreen();
+    $('#start-game-button').removeAttr("disabled");
     $('#menuscreen').show();
     
   };

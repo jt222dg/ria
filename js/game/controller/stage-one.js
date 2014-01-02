@@ -18,7 +18,7 @@ define(function(require) {
     
     this._addTimer         = 0.0;
     this._addInterval      = 0.2;
-    this._minAddInterval   = 0.025;
+    this._minAddInterval   = 0.04;
     
     this._score            = 0;
     this._scoreTimer       = 0.0;
@@ -29,7 +29,7 @@ define(function(require) {
     this._entityManager = new EntityManager({ entitycount : 300 });
     this._entityManager.initWorld();
     
-    this._player = this._entityManager.createPlayer(25, 170, 0.0, 0.0, 1.0, 15.0, 15.0);
+    this._player = this._entityManager.createPlayer(25, 170, 0.0, 0.0, 1.0, 10.0, 10.0);
     
     this._systemManager = new SystemManager();
     this._systemManager.onInit();
@@ -42,7 +42,6 @@ define(function(require) {
   
   StageOne.prototype.onLogic = function(delta) {
     
-    console.log(delta);
     this._addTimer += delta;
     
     if (this._addTimer >= this._addInterval) {

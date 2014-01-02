@@ -33,6 +33,7 @@ define(function(require) {
         var that = this;
         
         $('#start-game-button').click(function() {
+          $('#start-game-button').attr('disabled', 'disabled');
           that.gameHandler.startGame();
         });
       }

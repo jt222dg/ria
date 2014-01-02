@@ -14,8 +14,8 @@ define(function(require) {
     if (this.canvas !== undefined) {
       
       // Set canvas width to css width and rescale canvas height to give the canvas the scale 4:2 width:height
-      this.canvas.width  =  this.canvas.offsetWidth;
-      this.canvas.height = (this.canvas.offsetWidth / 4) * 2;
+      this.canvas.width  = Math.round(this.canvas.offsetWidth);
+      this.canvas.height = Math.round(this.canvas.width / 2);
       
       this.ctx = this.canvas.getContext("2d");
     }

@@ -52,7 +52,6 @@ define(function(require) {
         
         d.x += v.x * delta;
         d.y += v.y * delta;
-        
       }
       
     }

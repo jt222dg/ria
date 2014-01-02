@@ -34,6 +34,13 @@ define(function(require) {
         d = world.displacement[entity];
         p = world.physics[entity];
         
+        if (d.x < 0) {
+          d.x = 0;
+        }
+        
+        if (d.y < 0) {
+          d.y = 0;
+        }
         for (var enemy = 0; enemy < ENTITY_COUNT; ++enemy) {
           
           if ((world.mask[enemy] & this._COLLISION_MASK) === this._COLLISION_MASK) {
@@ -45,17 +52,17 @@ define(function(require) {
               var eP = world.physics[enemy];
               
               var a = {
-                x : d.x,
-                y : d.y,
-                w : p.w,
-                h : p.h
+                x : d.x+1,
+                y : d.y+1,
+                w : p.w-2,
+                h : p.h-2
               };
               
               var b = {
-                x : eD.x,
-                y : eD.y,
-                w : eP.w,
-                h : eP.h
+                x : eD.x+1,
+                y : eD.y+1,
+                w : eP.w-2,
+                h : eP.h-2
               };
               
               // If collided according to simple AABB collision detection
@@ -78,7 +85,6 @@ define(function(require) {
         
         if (d.x <= -10) {
           entityManager.destroyEntity(entity);
-          console.log("destroyed entity");
         }
       }
     }
