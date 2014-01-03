@@ -36,11 +36,16 @@ define(function(require) {
         
         if (d.x < 0) {
           d.x = 0;
+        } if (d.x + p.w > this._canvas.width) {
+          d.x = this._canvas.width - p.w;
         }
         
         if (d.y < 0) {
           d.y = 0;
+        } if (d.y + p.h > this._canvas.height) {
+          d.y = this._canvas.height - p.h;
         }
+        
         for (var enemy = 0; enemy < ENTITY_COUNT; ++enemy) {
           
           if ((world.mask[enemy] & this._COLLISION_MASK) === this._COLLISION_MASK) {
