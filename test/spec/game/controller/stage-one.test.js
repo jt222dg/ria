@@ -68,10 +68,10 @@ define(function(require) {
         
       });
       
-      env.it('_minAddInterval is defined and is set to 0.025', function() {
+      env.it('_minAddInterval is defined and is set to 0.04', function() {
         
         this.spec.expect(this.stageOne._minAddInterval).toBeDefined();
-        this.spec.expect(this.stageOne._minAddInterval).toEqual(0.025);
+        this.spec.expect(this.stageOne._minAddInterval).toEqual(0.04);
         
       });
       
@@ -137,14 +137,6 @@ define(function(require) {
         this.spec.spyOn(this.stageOne._systemManager, 'onRender');
         this.stageOne.onRender(this.delta);
         this.spec.expect(this.stageOne._systemManager.onRender).toHaveBeenCalled();
-        
-      });
-      
-      env.it('restart calls _entityManager.initWorld', function() {
-        
-        this.spec.spyOn(this.stageOne._entityManager, 'initWorld');
-        this.stageOne.restart();
-        this.spec.expect(this.stageOne._entityManager.initWorld).toHaveBeenCalled();
         
       });
       

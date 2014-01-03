@@ -107,7 +107,6 @@ require(['jquery', 'jasmine-html', 'jasmine-blanket'], function($, jasmine, blan
   specs.push('spec/ces/system/input-system.test.js');
   
   // Game tests
-  specs.push('spec/game/camera.test');
   specs.push('spec/game/game-handler.test');
   
   // Game Controller tests
