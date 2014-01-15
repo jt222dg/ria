@@ -79,7 +79,7 @@ define(function(require) {
       
       var NavView = GenericView.extend({
 
-      	defaultButton : "index",
+        defaultButton : "index",
 
         render : function() {
           GenericView.prototype.render.call(this);
@@ -91,24 +91,23 @@ define(function(require) {
         },
 
         activateButton : function(event) {
-			var path = this.defaultButton;
+          var path = this.defaultButton;
 
-			// Used if page is loaded with any fragment
-			// set
-			if (Backbone.history.fragment.length > 0)
-				path = Backbone.history.fragment;
+          // Used if page is loaded with any fragment
+          if (Backbone.history.fragment.length > 0)
+            path = Backbone.history.fragment;
 
-			// Prefer instead of fragment since fragment isn't
-			// set to the new one. That is because the click event 
-			// is run before the page is changed
-        	if (event)
-        		path = event.currentTarget.getAttribute("href");
+          // Prefer instead of fragment since fragment isn't
+          // set to the new one. That is because the click event 
+          // is run before the page is changed
+          if (event)
+            path = event.currentTarget.getAttribute("href");
 
-        	if (!path.match(/^#/))
-                path = '#' + path;
+          if (!path.match(/^#/))
+            path = '#' + path;
 
-        	$('.active').removeClass('active');
-        	this.$('a[href="' + path + '"]').parent().addClass('active');
+          $('.active').removeClass('active');
+          this.$('a[href="' + path + '"]').parent().addClass('active');
         }
       });
       
