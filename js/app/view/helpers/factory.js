@@ -79,43 +79,36 @@ define(function(require) {
       
       var NavView = GenericView.extend({
 
+      	defaultButton : "index",
+
         render : function() {
           GenericView.prototype.render.call(this);
-          
-          switch (Backbone.history.fragment) {
-            case "index"  : this.activateHomeButton();   break;
-            case "game"   : this.activateGameButton();   break;
-            case "about"  : this.activateAboutButton();  break;
-            case "scores" : this.activateScoresButton(); break;
-            default       : this.activateHomeButton();   break;
-          }
+          this.activateButton();
         },
         
         events : {
-          "click #home"   : "activateHomeButton",
-          "click #game"   : "activateGameButton",
-          "click #about"  : "activateAboutButton",
-          "click #scores" : "activateScoresButton"
+          "click a" : "activateButton"
         },
-        
-        activateHomeButton : function(event) {
-          $('.active').removeClass('active');
-          $('#home').parent().addClass('active');
-        },
-        
-        activateGameButton : function(event) {
-          $('.active').removeClass('active');
-          $('#game').parent().addClass('active');
-        },
-        
-        activateAboutButton : function(event) {
-          $('.active').removeClass('active');
-          $('#about').parent().addClass('active');
-        },
-        
-        activateScoresButton : function(event) {
-          $('.active').removeClass('active');
-          $('#scores').parent().addClass('active');
+
+        activateButton : function(event) {
+			var path = this.defaultButton;
+
+			// Used if page is loaded with any fragment
+			// set
+			if (Backbone.history.fragment.length > 0)
+				path = Backbone.history.fragment;
+
+			// Prefer instead of fragment since fragment isn't
+			// set to the new one. That is because the click event 
+			// is run before the page is changed
+        	if (event)
+        		path = event.currentTarget.getAttribute("href");
+
+        	if (!path.match(/^#/))
+                path = '#' + path;
+
+        	$('.active').removeClass('active');
+        	this.$('a[href="' + path + '"]').parent().addClass('active');
         }
       });
       
