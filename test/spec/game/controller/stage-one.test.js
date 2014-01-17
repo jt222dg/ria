@@ -108,6 +108,7 @@ define(function(require) {
       
       env.it('onLogic increments _addTimer by delta', function() {
         
+        this.spec.spyOn(this.stageOne._systemManager, 'onLogic');
         var oldAddTimer = this.stageOne._addTimer;
         this.stageOne.onLogic(this.delta);
         var newAddTimer = this.stageOne._addTimer;
@@ -118,6 +119,7 @@ define(function(require) {
       
       env.it('onLogic adds an enimy when _addInterval is reached', function() {
         
+        this.spec.spyOn(this.stageOne._systemManager, 'onLogic');
         this.spec.spyOn(this.stageOne._entityManager, 'createBox');
         this.stageOne.onLogic(1000);
         this.spec.expect(this.stageOne._entityManager.createBox).toHaveBeenCalled();
