@@ -59,11 +59,11 @@ define(function(require) {
         
         this.scores     = new Scores();
         this.mockModels = [
-          new Score({ name : "Reyna",  amount : 50 }),
-          new Score({ name : "Jesper", amount : 5 }),
+          new Score({ name : "Reyna",  amount : 50   }),
+          new Score({ name : "Jesper", amount : 5    }),
           new Score({ name : "Mya",    amount : 6000 }),
-          new Score({ name : "Lucy",   amount : 13 }),
-          new Score({ name : "Luffy",  amount : 900 })
+          new Score({ name : "Lucy",   amount : 13   }),
+          new Score({ name : "Luffy",  amount : 900  })
         ];
         
         this.scores.add(this.mockModels);

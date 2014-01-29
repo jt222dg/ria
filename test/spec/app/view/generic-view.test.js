@@ -73,6 +73,7 @@ define(function(require) {
         this.mockElement  = "#mock";
         this.mockContext  = document.createElement("div");
         this.mockContext.id = "mock";
+        
       });
       
       env.afterEach(function() {
